@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da48e8938bd26b04492e1a092b75fabf
+guid: f33ea14f5f5dfc54f869d33646afaf1d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monsters_key_0
+      name: therapist_battle_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f7bcb21b18d85c49ab09e6189c39b99
-      internalID: 259355914
+      spriteID: f83ba920f3d2ad84cb2a953e11d5f55d
+      internalID: -616357983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monsters_key_1
+      name: therapist_battle_idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -171,8 +171,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc3c5d090943b24b93f8eaa52b8ac08
-      internalID: 704442782
+      spriteID: 53cf5f62836bbb646b446a6650347d2a
+      internalID: -402995230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: therapist_battle_idle_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11209310c625f1e47979e0bd2bdc4d91
+      internalID: 1295546320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: therapist_battle_idle_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd74adf10b42f1f48b758738105319de
+      internalID: 398739781
       vertices: []
       indices: 
       edges: []
@@ -188,8 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      monsters_key_0: 259355914
-      monsters_key_1: 704442782
+      therapist_battle_idle_0: -616357983
+      therapist_battle_idle_1: -402995230
+      therapist_battle_idle_2: 1295546320
+      therapist_battle_idle_3: 398739781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

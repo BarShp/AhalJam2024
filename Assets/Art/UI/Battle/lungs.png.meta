@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da48e8938bd26b04492e1a092b75fabf
+guid: a33a7547e1f07a54eb685575c5c1652c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,12 +136,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monsters_key_0
+      name: lungs_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 76
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,19 +150,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f7bcb21b18d85c49ab09e6189c39b99
-      internalID: 259355914
+      spriteID: 4a4fa2722c374aa4dac8f48c2dc2ff69
+      internalID: -406574907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monsters_key_1
+      name: lungs_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 76
         y: 0
-        width: 64
+        width: 76
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,8 +171,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc3c5d090943b24b93f8eaa52b8ac08
-      internalID: 704442782
+      spriteID: f3c2e820174a1e544bc8e59e2b582b39
+      internalID: 1768498724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9525c0f39a33cc94282412c1616932fa
+      internalID: -74756816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5684f9d332534d64999cd36854a838cb
+      internalID: 1655475682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_4
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb06b01e695fbd04aa6f72da6084f6c9
+      internalID: 1408089333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_5
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c307f444dec75749be5f99e179f04d6
+      internalID: 1953007796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_6
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d8917411b8be14b8a1cd6b0fbd8edb
+      internalID: 1821897875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lungs_7
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b830c716c13b124cbc7692d9d7c19d5
+      internalID: -705956181
       vertices: []
       indices: 
       edges: []
@@ -188,8 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      monsters_key_0: 259355914
-      monsters_key_1: 704442782
+      lungs_0: -406574907
+      lungs_1: 1768498724
+      lungs_2: -74756816
+      lungs_3: 1655475682
+      lungs_4: 1408089333
+      lungs_5: 1953007796
+      lungs_6: 1821897875
+      lungs_7: -705956181
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

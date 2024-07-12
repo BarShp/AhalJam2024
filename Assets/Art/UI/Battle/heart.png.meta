@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da48e8938bd26b04492e1a092b75fabf
+guid: 728ea9b0b3232d742a639bfecf50a57b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monsters_key_0
+      name: heart_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f7bcb21b18d85c49ab09e6189c39b99
-      internalID: 259355914
+      spriteID: c08e18e76884aa54aa810f59a275688d
+      internalID: 2101990834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monsters_key_1
+      name: heart_1
       rect:
         serializedVersion: 2
         x: 64
@@ -171,8 +171,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc3c5d090943b24b93f8eaa52b8ac08
-      internalID: 704442782
+      spriteID: f491badca24186543838fc91f6bf6456
+      internalID: -293315087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77eada82d7605af418cd5f27d9b97d8d
+      internalID: 1566108654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: heart_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a137a89348128b42a16c35f39bacadf
+      internalID: -1922431846
       vertices: []
       indices: 
       edges: []
@@ -188,8 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      monsters_key_0: 259355914
-      monsters_key_1: 704442782
+      heart_0: 2101990834
+      heart_1: -293315087
+      heart_2: 1566108654
+      heart_3: -1922431846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
