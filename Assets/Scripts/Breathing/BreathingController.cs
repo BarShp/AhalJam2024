@@ -15,9 +15,9 @@ public class BreathingController : BaseMonoBehaviour
     [SerializeField] private float timeToMaxAnxietyInSeconds = 6;
     [SerializeField] private float lowerAnxietySpeed = 0.125f;
 
-    [Range(0.5f, 5f)]
+    [Range(0.1f, 5f)]
     [SerializeField] private float breathingPointMaxLimitY;
-    [Range(0.5f, 5f)]
+    [Range(0.1f, 5f)]
     [SerializeField] private float breathingPointMinLimitY;
 
     [SerializeField] private Image anxietyBar;
