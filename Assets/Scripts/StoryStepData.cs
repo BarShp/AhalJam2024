@@ -6,18 +6,19 @@ public enum StoryStepActionType
 {
     AdvanceText,
     ChangeAnxietyLevel,
-    ChangeInteractableState
+    ChangeInteractableState,
 }
 
 [Serializable]
-public class StoryStepData
+public struct StoryStepData
 {
     public string collisionId;
+    public bool setCheckpoint;    
     public BaseStoryStepAction[] storyStepActions;
 }
 
 [Serializable]
-public class BaseStoryStepAction
+public struct BaseStoryStepAction
 {
     public StoryStepActionType actionType;
 
@@ -25,7 +26,7 @@ public class BaseStoryStepAction
     public AnxietyState AnxietyLevel;
 
     [ShowIf("actionType", StoryStepActionType.AdvanceText)]
-    public string DialogueSO;
+    public DialogueSO DialogueText;
 
     [ShowIf("actionType", StoryStepActionType.ChangeInteractableState)]
     public InteractableLockStateChangeRequest InteractableLockState;

@@ -69,5 +69,6 @@ public class EventListenersData
 public enum EventType
 {
     OnStoryColliderHit,
+    OnPlayerLoss,
     OnInteractableChangeLockStateRequest
 }

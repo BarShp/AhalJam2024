@@ -23,22 +23,41 @@ MonoBehaviour:
     SerializationNodes: []
   storyStepsData:
   - collisionId: kekW
+    setCheckpoint: 0
     storyStepActions:
     - actionType: 0
       AnxietyLevel: 0
-      DialogueSO: Kekw
+      DialogueText: {fileID: 0}
       InteractableLockState:
         InteractableID: 
         IsInteractable: 0
     - actionType: 1
       AnxietyLevel: 3
-      DialogueSO: 
+      DialogueText: {fileID: 0}
       InteractableLockState:
         InteractableID: 
         IsInteractable: 0
     - actionType: 2
       AnxietyLevel: 0
-      DialogueSO: 
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+  - collisionId: kekW2
+    setCheckpoint: 1
+    storyStepActions:
+    - actionType: 1
+      AnxietyLevel: 2
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+  - collisionId: kekW3
+    setCheckpoint: 0
+    storyStepActions:
+    - actionType: 1
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
       InteractableLockState:
         InteractableID: 
         IsInteractable: 0

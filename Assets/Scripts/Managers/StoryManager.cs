@@ -8,10 +8,13 @@ public class StoryManager : MonoBehaviour
     [SerializeField] StoryStepsSO StoryDataSO;
 
     private  AnxietyManager anxietyManager;
+    private Rigidbody2D playerRigidbody;
     private int currentStoryStep = 0;
+    private Checkpoint currentCheckpoint;
     void Start()
     {
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
+        playerRigidbody = FindAnyObjectByType<PlayerMovment>().GetComponent<Rigidbody2D>();
         AddListeners();
     }
 
@@ -31,6 +34,11 @@ public class StoryManager : MonoBehaviour
         }
 
         currentStoryStep += 1;
+
+        if(currentStoryData.setCheckpoint)
+        {
+            ProcessSetCheckpoint();
+        };
     }
 
     private void ProcessAction(BaseStoryStepAction baseStoryStep)
@@ -40,7 +48,7 @@ public class StoryManager : MonoBehaviour
             //Prints are for testings and will get removed later
             case StoryStepActionType.AdvanceText:
             //Call Dialogue system to pop out and show people
-                ProcessInitiateNewDialogue(baseStoryStep.DialogueSO);
+                ProcessInitiateNewDialogue(baseStoryStep.DialogueText);
                 print("Starting New Dialogue");
                 break;
 
@@ -56,12 +64,36 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    private void ProcessSetCheckpoint()
+    {
+        print("Set Checkpoint!");
+        currentCheckpoint = new Checkpoint 
+        {
+            StoryStepCheckpoint = currentStoryStep,
+            AnxietyState = anxietyManager.currentState,
+            CheckpointPosition = playerRigidbody.position
+        };
+    }
+
     void AddListeners()
     {
         EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
+        EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
 
-    private void ProcessInitiateNewDialogue(string dialogueSO)
+    private void ResetBackToCheckpoint(object obj)
+    {
+        //FadeToBlack
+        playerRigidbody.position = currentCheckpoint.CheckpointPosition;
+        StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentCheckpoint.StoryStepCheckpoint];
+        foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
+        {
+            ProcessAction(storyActionStep);
+        }
+        anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
+    }
+
+    private void ProcessInitiateNewDialogue(DialogueSO dialogueSO)
     {
         //Temporary print to until merged with dialogue system
         print(dialogueSO);
