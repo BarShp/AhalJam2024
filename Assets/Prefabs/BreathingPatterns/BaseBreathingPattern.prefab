@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5554834106239872542}
   - component: {fileID: 5218677114034792056}
+  - component: {fileID: 5678691831761351996}
   m_Layer: 0
   m_Name: BaseBreathingPattern
   m_TagString: Untagged
@@ -97,3 +98,21 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!114 &5678691831761351996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474241593739601628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12b1fe1b42884d7692049d7f6f79ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 5218677114034792056}
+  autoUpdate: 1
+  shouldRotateToPathNormal: 0
+  prefab: {fileID: 5291319994331818112, guid: e822050c908849e46b10c26783ea9034, type: 3}
+  holder: {fileID: 6474241593739601628}
+  spacing: 0.075
