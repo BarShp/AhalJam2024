@@ -49,4 +49,16 @@ public class StoryManager : MonoBehaviour
     {
         EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
     }
+
+    private void ProcessChangeInteractableLockState(InteractableLockStateChangeRequestEvent actionData)
+    {
+        EventsManager.Instance.InvokeEvent(EventType.OnInteractableChangeLockStateRequest, actionData);
+    }
+    
+}
+
+public struct InteractableLockStateChangeRequestEvent
+{
+    public string InteractableID;
+    public bool IsInteractable;
 }
