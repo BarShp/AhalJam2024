@@ -7,13 +7,11 @@ public class StoryManager : MonoBehaviour
 {
     // [SerializeField] private 
     
-    private EventsManager eventManager;
     private  AnxietyManager anxietyManager;
     private int currentStoryStep = 0;
 
     void Start()
     {
-        eventManager = FindFirstObjectByType<EventsManager>();
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
         AddListeners();
     }
@@ -49,6 +47,6 @@ public class StoryManager : MonoBehaviour
 
     void AddListeners()
     {
-        eventManager.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
+        EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
     }
 }

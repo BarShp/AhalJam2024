@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 // The EventsManager class manages events and their listeners.
-public class EventsManager: MonoBehaviour
+public class EventsManager: BaseSingletonMonoBehaviour<EventsManager>
 {
     private Dictionary<EventType, EventListenersData> eventListenersData = new();
     // Adds listener for the specified event type, and adds action to be invoked when the event is triggered
@@ -37,7 +37,7 @@ public class EventsManager: MonoBehaviour
     }
 
     // Invokes all listeners registered for the specified event type, and the data to pass to the listeners when invoking the event
-    public void InvokeEvent(EventType eventType, object dataToInvoke)
+    public void InvokeEvent(EventType eventType, object dataToInvoke = null)
     {
         if (!eventListenersData.TryGetValue(eventType, out var value))
         {
@@ -69,4 +69,5 @@ public class EventListenersData
 public enum EventType
 {
     OnStoryColliderHit,
+    OnInteractableChangeLockStateRequest
 }
