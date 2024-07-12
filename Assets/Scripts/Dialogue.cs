@@ -5,9 +5,8 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    [SerializeField] DialogueSO textDialogue;
+    DialogueSO textDialogue;
     public TextMeshProUGUI textComponent;
-
     private int index;
 
     void Start()
@@ -17,7 +16,7 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && textDialogue != null)
         {
             if (textComponent.text == textDialogue.lines[index])
             {
@@ -31,11 +30,18 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void StartDialogue(DialogueSO newDialogueText)
-    {
-        index = 0;
+    public void StartDialogue(DialogueSO newDialogueText)
+    {                
+        StopAndClearDialogue();
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
+    }
+
+    public void StopAndClearDialogue()
+    {
+        StopAllCoroutines();
+        textComponent.text = string.Empty;        
+        index = 0;
     }
 
     IEnumerator TypeLine()
@@ -53,7 +59,7 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            StartCoroutine (TypeLine());
+            StartCoroutine(TypeLine());
         }
         else
         {

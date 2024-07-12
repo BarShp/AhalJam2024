@@ -8,12 +8,14 @@ public class StoryManager : MonoBehaviour
     [SerializeField] StoryStepsSO StoryDataSO;
 
     private  AnxietyManager anxietyManager;
+    private Dialogue dialogueManager;
     private Rigidbody2D playerRigidbody;
     private int currentStoryStep = 0;
     private Checkpoint currentCheckpoint;
     void Start()
     {
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
+        dialogueManager = FindFirstObjectByType<Dialogue>();
         playerRigidbody = FindAnyObjectByType<PlayerMovment>().GetComponent<Rigidbody2D>();
         AddListeners();
     }
@@ -33,12 +35,12 @@ public class StoryManager : MonoBehaviour
             ProcessAction(storyActionStep);
         }
 
-        currentStoryStep += 1;
-
         if(currentStoryData.setCheckpoint)
         {
             ProcessSetCheckpoint();
         };
+
+        currentStoryStep += 1;        
     }
 
     private void ProcessAction(BaseStoryStepAction baseStoryStep)
@@ -85,6 +87,8 @@ public class StoryManager : MonoBehaviour
     {
         //FadeToBlack
         playerRigidbody.position = currentCheckpoint.CheckpointPosition;
+        dialogueManager.StopAndClearDialogue();
+        print(currentCheckpoint.StoryStepCheckpoint);
         StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentCheckpoint.StoryStepCheckpoint];
         foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
         {
@@ -96,7 +100,7 @@ public class StoryManager : MonoBehaviour
     private void ProcessInitiateNewDialogue(DialogueSO dialogueSO)
     {
         //Temporary print to until merged with dialogue system
-        print(dialogueSO);
+        dialogueManager.StartDialogue(dialogueSO);
     }
 
     private void ProcessChangeAnxietyLevel(AnxietyState state)

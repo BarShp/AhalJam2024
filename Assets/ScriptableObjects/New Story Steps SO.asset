@@ -25,12 +25,6 @@ MonoBehaviour:
   - collisionId: kekW
     setCheckpoint: 0
     storyStepActions:
-    - actionType: 0
-      AnxietyLevel: 0
-      DialogueText: {fileID: 0}
-      InteractableLockState:
-        InteractableID: 
-        IsInteractable: 0
     - actionType: 1
       AnxietyLevel: 3
       DialogueText: {fileID: 0}
@@ -58,6 +52,12 @@ MonoBehaviour:
     - actionType: 1
       AnxietyLevel: 0
       DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: 6f962172f753c70409a3492015a5f781, type: 2}
       InteractableLockState:
         InteractableID: 
         IsInteractable: 0
