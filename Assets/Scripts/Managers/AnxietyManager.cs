@@ -1,30 +1,38 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
-public class AnxietyManager : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public class AnxietyManager : BaseMonoBehaviour
 {
-    [SerializeField] List<AnxietyStateData> anxietyStatesList;
-    AnxietyState currentState = AnxietyState.Calm;
-    SpriteRenderer objectSpriteRenderer;
+    [SerializeField] private Dictionary<AnxietyState, Sprite> anxietyStateToSprite;
 
-    private void Start() {
-        objectSpriteRenderer = GetComponent<SpriteRenderer>();
-        AnxietyStateData stateData = anxietyStatesList.Find(state => state.state == currentState);
-        objectSpriteRenderer.sprite = stateData.sprite;
+    private SpriteRenderer frenchThingySprite;
+    private AnxietyState currentState = AnxietyState.Calm;
+
+    private void Awake()
+    {
+        frenchThingySprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start() 
+    {
+        SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(currentState);
     }
 
     public void ModifyAnxietyState(AnxietyState newState)
     {
-        if (currentState != newState)
-        {
-            AnxietyStateData stateData = anxietyStatesList.Find(state => state.state == newState);
-            print(stateData.state);
-            objectSpriteRenderer.sprite = stateData.sprite;
-            currentState = newState;
-        }
+        if (currentState == newState) return;
+        currentState = newState;
+        print(currentState);
+
+        SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(currentState);
+    }
+
+    private void SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(AnxietyState state)
+    {
+        var sprite = anxietyStateToSprite[state];
+        frenchThingySprite.sprite = sprite;
     }
 }
 
@@ -34,11 +42,4 @@ public enum AnxietyState
     Low,
     Medium,
     High
-}
-
-[Serializable]
-public class AnxietyStateData
-{
-    public AnxietyState state;
-    public Sprite sprite;
 }

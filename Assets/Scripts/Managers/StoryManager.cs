@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class StoryManager : MonoBehaviour
 {
-    EventsManager eventManager;
-    AnxietyManager anxietyManager;
-    int currentStoryStep = 0;
+    // [SerializeField] private 
+    
+    private EventsManager eventManager;
+    private  AnxietyManager anxietyManager;
+    private int currentStoryStep = 0;
 
     void Start()
     {
@@ -20,21 +22,29 @@ public class StoryManager : MonoBehaviour
     {
         print("I was Invoked");
         var eventStoryStepData = (StoryStepData) storyStepData;
-        print(eventStoryStepData.storyStepType);
-        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyUp))
-        {
-            anxietyManager.ModifyAnxietyState(AnxietyState.Medium);
-        }
 
-        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyDown))
-        {
-            anxietyManager.ModifyAnxietyState(AnxietyState.Calm);
-        }
 
-        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AdvanceText))
+        switch (eventStoryStepData.collisionId)
         {
-            print(eventStoryStepData.textToShowIfSelectedWhat);
+            
         }
+        
+        //
+        // print(eventStoryStepData.storyStepType);
+        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyUp))
+        // {
+        //     anxietyManager.ModifyAnxietyState(AnxietyState.Medium);
+        // }
+        //
+        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyDown))
+        // {
+        //     anxietyManager.ModifyAnxietyState(AnxietyState.Calm);
+        // }
+        //
+        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AdvanceText))
+        // {
+        //     print(eventStoryStepData.textToShowIfSelectedWhat);
+        // }
     }
 
     void AddListeners()

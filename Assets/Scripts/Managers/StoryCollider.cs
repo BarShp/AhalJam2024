@@ -1,27 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class StoryCollider : MonoBehaviour
 {
-    EventsManager eventsManager;
-    bool hasTriggered = false;
-    [SerializeField] StoryStepData storyStepData;
-    // Start is called before the first frame update
+    [SerializeField] private string colliderId;
+    
+    private EventsManager eventsManager;
+    private bool hasTriggered = false;
+    
     void Start()
     {
         eventsManager = FindObjectOfType<EventsManager>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
         print("ME COLLIDED AHAL");
-        if (hasTriggered == false)
-        {
-            eventsManager.InvokeEvent(EventType.OnStoryColliderHit, storyStepData);
-            hasTriggered = true;
-        }
+        
+        if (hasTriggered) return;
+        
+        hasTriggered = true;
+        eventsManager.InvokeEvent(EventType.OnStoryColliderHit, colliderId);
     }
 }

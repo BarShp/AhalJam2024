@@ -1,25 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[Flags]
-public enum StoryStepType
+public enum StoryStepActionType
 {
-    AdvanceText = 1,
-    AnxietyUp = 2,
-    AnxietyDown = 4,
+    AdvanceText,
+    AnxietyUp,
+    AnxietyDown,
 }
 
 [Serializable]
 public class StoryStepData
 {
-    public StoryStepType storyStepType;
+    public string collisionId;
     public int storyStepId;
-    public string textToShowIfSelectedWhat;
+    public BaseStoryStepAction[] storyStepActions;
+}
 
-    public bool CheckStoryStepTypeExists(StoryStepType storyStepToCheck)
-    {
-            return (storyStepType & storyStepToCheck) != 0;
-    }
+public abstract class BaseStoryStepAction
+{
+    public StoryStepActionType actionType;
+}
+
+public class AnxietyStoryStepAction : BaseStoryStepAction
+{
+    public AnxietyState ChangeToState;
 }
