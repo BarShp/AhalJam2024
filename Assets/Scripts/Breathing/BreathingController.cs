@@ -56,24 +56,11 @@ public class BreathingController : BaseMonoBehaviour
 
     private void UpdateBreathingPoint()
     {
-        var breathInOutSign = 1;
-        if (!Input.GetKey(KeyCode.W))
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                currentVelocity = 0;
-                return;
-            }
-
-            breathInOutSign = -1;
-        }
-        
-        
-        // Calculate the target position based on input
-        targetBreathingPointNormalized = Mathf.Clamp(currentBreathingPointNormalized + breathInOutSign, 0, 1);
+        var verticalInput = Input.GetAxis("Vertical");
 
         // Smoothly interpolate towards the target using SmoothDamp
-        currentBreathingPointNormalized = Mathf.SmoothDamp(currentBreathingPointNormalized, targetBreathingPointNormalized, ref currentVelocity, breathInOutSpeed);
+        currentBreathingPointNormalized += breathInOutSpeed * verticalInput * Time.deltaTime;
+        currentBreathingPointNormalized = Mathf.Clamp(currentBreathingPointNormalized, 0, 1);
         
         SetBreathingPointYPos(currentBreathingPointNormalized);
     }

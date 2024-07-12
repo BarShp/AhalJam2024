@@ -16501,7 +16501,7 @@ MonoBehaviour:
     SerializationNodes: []
   breathingPatternPathCreator: {fileID: 760327393}
   breathingPoint: {fileID: 1160191345}
-  thresholdBreathingOffset: 0.25
+  thresholdBreathingOffset: 0.15
   breathingPatternSpeed: 1
   breathInOutSpeed: 0.75
   timeToMaxAnxietyInSeconds: 2.5
