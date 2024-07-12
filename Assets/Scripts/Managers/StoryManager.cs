@@ -9,14 +9,14 @@ public class StoryManager : MonoBehaviour
 
     private  AnxietyManager anxietyManager;
     private Dialogue dialogueManager;
-    private Rigidbody2D playerRigidbody;
+    private CheckpointManager checkpointManager;
     private int currentStoryStep = 0;
-    private Checkpoint currentCheckpoint;
+
     void Start()
     {
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
         dialogueManager = FindFirstObjectByType<Dialogue>();
-        playerRigidbody = FindAnyObjectByType<PlayerMovment>().GetComponent<Rigidbody2D>();
+        checkpointManager = FindFirstObjectByType<CheckpointManager>();
         AddListeners();
     }
 
@@ -37,7 +37,7 @@ public class StoryManager : MonoBehaviour
 
         if(currentStoryData.setCheckpoint)
         {
-            ProcessSetCheckpoint();
+            checkpointManager.ProcessSetCheckpoint();
         };
 
         currentStoryStep += 1;        
@@ -66,16 +66,6 @@ public class StoryManager : MonoBehaviour
         }
     }
 
-    private void ProcessSetCheckpoint()
-    {
-        print("Set Checkpoint!");
-        currentCheckpoint = new Checkpoint 
-        {
-            StoryStepCheckpoint = currentStoryStep,
-            AnxietyState = anxietyManager.currentState,
-            CheckpointPosition = playerRigidbody.position
-        };
-    }
 
     void AddListeners()
     {
@@ -83,19 +73,6 @@ public class StoryManager : MonoBehaviour
         EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
 
-    private void ResetBackToCheckpoint(object obj)
-    {
-        //FadeToBlack
-        playerRigidbody.position = currentCheckpoint.CheckpointPosition;
-        dialogueManager.StopAndClearDialogue();
-        print(currentCheckpoint.StoryStepCheckpoint);
-        StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentCheckpoint.StoryStepCheckpoint];
-        foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
-        {
-            ProcessAction(storyActionStep);
-        }
-        anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
-    }
 
     private void ProcessInitiateNewDialogue(DialogueSO dialogueSO)
     {
