@@ -56,7 +56,7 @@ public class BreathingController : BaseMonoBehaviour
 
     private void UpdateBreathingPoint()
     {
-        var verticalInput = Input.GetAxis("Vertical");
+        var verticalInput = Input.GetAxisRaw("Vertical");
 
         // Smoothly interpolate towards the target using SmoothDamp
         currentBreathingPointNormalized += breathInOutSpeed * verticalInput * Time.deltaTime;
