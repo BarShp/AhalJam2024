@@ -49,20 +49,21 @@ public class StoryManager : MonoBehaviour
     {
         switch (baseStoryStep.actionType)
         {
-
+            //Prints are for testings and will get removed later
             case StoryStepActionType.AdvanceText:
             //Call Dialogue system to pop out and show people
+                ProcessInitiateNewDialogue(baseStoryStep.DialogueSO);
                 print("Starting New Dialogue");
                 break;
 
             case StoryStepActionType.ChangeAnxietyLevel:
                 print("Modifying Anxiety Level");
-                anxietyManager.ModifyAnxietyState(baseStoryStep.AnxietyLevel);
+                ProcessChangeAnxietyLevel(baseStoryStep.AnxietyLevel);
                 break;
             
             case StoryStepActionType.ChangeInteractableState:
                 print("Changing Lock Interactable");
-                // ProcessChangeInteractableLockState(baseStoryStep.InteractableLockState);
+                ProcessChangeInteractableLockState(baseStoryStep.InteractableLockState);
                 break;
         }
     }
@@ -70,6 +71,17 @@ public class StoryManager : MonoBehaviour
     void AddListeners()
     {
         EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
+    }
+
+    private void ProcessInitiateNewDialogue(string dialogueSO)
+    {
+        //Temporary print to until merged with dialogue system
+        print(dialogueSO);
+    }
+
+    private void ProcessChangeAnxietyLevel(AnxietyState state)
+    {
+        anxietyManager.ModifyAnxietyState(state);
     }
 
     private void ProcessChangeInteractableLockState(InteractableLockStateChangeRequest actionData)
