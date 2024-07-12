@@ -21,18 +21,19 @@ public class StoryManager : MonoBehaviour
         print("I was Invoked");
         var eventStoryStepData = (StoryStepData) storyStepData;
         print(eventStoryStepData.storyStepType);
-        switch(eventStoryStepData.storyStepType)
+        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyUp))
         {
-            case StoryStepType.AnxietyUp:
             anxietyManager.ModifyAnxietyState(AnxietyState.Medium);
-            break;
+        }
 
-            case StoryStepType.AnxietyDown:
+        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyDown))
+        {
             anxietyManager.ModifyAnxietyState(AnxietyState.Calm);
-            break;
+        }
 
-            case StoryStepType.AdvanceText:
-            break;
+        if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AdvanceText))
+        {
+            print(eventStoryStepData.textToShowIfSelectedWhat);
         }
     }
 

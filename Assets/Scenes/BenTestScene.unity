@@ -304,8 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyStepData:
-    storyStepType: 1
+    storyStepType: 3
     storyStepId: 0
+    textToShowIfSelectedWhat: Start of dialogue
 --- !u!58 &1230938269
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ using UnityEngine;
 public class StoryCollider : MonoBehaviour
 {
     EventsManager eventsManager;
+    bool hasTriggered = false;
     [SerializeField] StoryStepData storyStepData;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,10 @@ public class StoryCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         print("ME COLLIDED AHAL");
-        eventsManager.InvokeEvent(EventType.OnStoryColliderHit, storyStepData);
+        if (hasTriggered == false)
+        {
+            eventsManager.InvokeEvent(EventType.OnStoryColliderHit, storyStepData);
+            hasTriggered = true;
+        }
     }
 }
