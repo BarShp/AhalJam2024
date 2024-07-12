@@ -18,6 +18,9 @@ public class StoryManager : MonoBehaviour
     public void ModifyStoryStep(object collisionId)
     {
         var currentCollisionId = (string)collisionId;
+
+        if (currentStoryStep > StoryDataSO.storyStepsData.Length - 1) throw new Exception("Trying to get a new story step but StoryData doesn't have any left, dudu plz");
+
         StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentStoryStep];
 
         if (currentStoryData.collisionId != currentCollisionId) return;
@@ -27,22 +30,7 @@ public class StoryManager : MonoBehaviour
             ProcessAction(storyActionStep);
         }
 
-        //
-        // print(eventStoryStepData.storyStepType);
-        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyUp))
-        // {
-        //     anxietyManager.ModifyAnxietyState(AnxietyState.Medium);
-        // }
-        //
-        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyDown))
-        // {
-        //     anxietyManager.ModifyAnxietyState(AnxietyState.Calm);
-        // }
-        //
-        // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AdvanceText))
-        // {
-        //     print(eventStoryStepData.textToShowIfSelectedWhat);
-        // }
+        currentStoryStep += 1;
     }
 
     private void ProcessAction(BaseStoryStepAction baseStoryStep)
