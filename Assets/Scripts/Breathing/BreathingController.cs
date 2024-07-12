@@ -15,6 +15,9 @@ public class BreathingController : BaseMonoBehaviour
     [SerializeField] private float timeToMaxAnxietyInSeconds = 6;
     [SerializeField] private float lowerAnxietySpeed = 0.125f;
 
+    [SerializeField] private HeartAnimationController heartAnimationController;
+    [SerializeField] private LungsAnimationController lungsAnimationController;
+
     [Range(0.1f, 5f)]
     [SerializeField] private float breathingPointMaxLimitY;
     [Range(0.1f, 5f)]
@@ -63,6 +66,8 @@ public class BreathingController : BaseMonoBehaviour
         currentBreathingPointNormalized = Mathf.Clamp(currentBreathingPointNormalized, 0, 1);
         
         SetBreathingPointYPos(currentBreathingPointNormalized);
+        
+        lungsAnimationController.SetCurrentLungsUsage(currentBreathingPointNormalized);
     }
 
     private void UpdateBreathingQuality()
@@ -82,6 +87,9 @@ public class BreathingController : BaseMonoBehaviour
         currentAnxiety = Mathf.Clamp(currentAnxiety, 0, 1);
         
         anxietyBar.fillAmount = currentAnxiety;
+
+        // Don't ask, I'm tired
+        heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
     }
 
     private void SetBreathingPointYPos(float normalizedValue)
