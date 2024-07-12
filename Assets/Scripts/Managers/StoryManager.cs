@@ -7,17 +7,20 @@ public class StoryManager : MonoBehaviour
 {
     EventsManager eventManager;
     AnxietyManager anxietyManager;
+    int currentStoryStep = 0;
 
     void Start()
     {
-        AddListeners();
         eventManager = FindFirstObjectByType<EventsManager>();
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
+        AddListeners();
     }
 
     public void ModifyStoryStep(object storyStepData)
     {
+        print("I was Invoked");
         var eventStoryStepData = (StoryStepData) storyStepData;
+        print(eventStoryStepData.storyStepType);
         switch(eventStoryStepData.storyStepType)
         {
             case StoryStepType.AnxietyUp:
@@ -25,7 +28,7 @@ public class StoryManager : MonoBehaviour
             break;
 
             case StoryStepType.AnxietyDown:
-            anxietyManager.ModifyAnxietyState(AnxietyState.Medium);
+            anxietyManager.ModifyAnxietyState(AnxietyState.Calm);
             break;
 
             case StoryStepType.AdvanceText:

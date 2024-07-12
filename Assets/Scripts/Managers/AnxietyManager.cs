@@ -16,13 +16,14 @@ public class AnxietyManager : MonoBehaviour
         objectSpriteRenderer.sprite = stateData.sprite;
     }
 
-    public void ModifyAnxietyState(AnxietyState state)
+    public void ModifyAnxietyState(AnxietyState newState)
     {
-        if (currentState != state)
+        if (currentState != newState)
         {
-            AnxietyStateData stateData = anxietyStatesList.Find(state => state.state == currentState);
+            AnxietyStateData stateData = anxietyStatesList.Find(state => state.state == newState);
+            print(stateData.state);
             objectSpriteRenderer.sprite = stateData.sprite;
-            currentState = state;
+            currentState = newState;
         }
     }
 }
@@ -35,7 +36,7 @@ public enum AnxietyState
     High
 }
 
-[System.Serializable]
+[Serializable]
 public class AnxietyStateData
 {
     public AnxietyState state;

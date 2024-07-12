@@ -14,4 +14,5 @@ public enum StoryStepType
 public class StoryStepData
 {
     public StoryStepType storyStepType;
+    public int storyStepId;
 }
