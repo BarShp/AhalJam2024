@@ -151,6 +151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086b0315fb672bc40aa91e6b8b9f999b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
 --- !u!4 &514720734
 Transform:
   m_ObjectHideFlags: 0
@@ -306,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77fb63f23df22b4ba2f126db8a1a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderId: 
+  colliderId: kekW
 --- !u!58 &1230938269
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -575,6 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9f92f0d78fe3c4d848b518e6123790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoryDataSO: {fileID: 0}
 --- !u!4 &1883235783
 Transform:
   m_ObjectHideFlags: 0

@@ -1,26 +1,39 @@
 using System;
+using System.Diagnostics;
+using Sirenix.OdinInspector;
 
 public enum StoryStepActionType
 {
     AdvanceText,
-    AnxietyUp,
-    AnxietyDown,
+    ChangeAnxietyLevel,
+    ChangeInteractableState
 }
 
 [Serializable]
 public class StoryStepData
 {
     public string collisionId;
-    public int storyStepId;
     public BaseStoryStepAction[] storyStepActions;
 }
 
-public abstract class BaseStoryStepAction
+[Serializable]
+public class BaseStoryStepAction
 {
     public StoryStepActionType actionType;
+
+    [ShowIf("actionType", StoryStepActionType.ChangeAnxietyLevel)]
+    public AnxietyState AnxietyLevel;
+
+    [ShowIf("actionType", StoryStepActionType.AdvanceText)]
+    public string DialogueSO;
+
+    [ShowIf("actionType", StoryStepActionType.ChangeInteractableState)]
+    public InteractableLockStateChangeRequest InteractableLockState;
 }
 
-public class AnxietyStoryStepAction : BaseStoryStepAction
+[Serializable]
+public struct InteractableLockStateChangeRequest
 {
-    public AnxietyState ChangeToState;
+    public string InteractableID;
+    public bool IsInteractable;
 }

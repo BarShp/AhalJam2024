@@ -5,28 +5,28 @@ using UnityEngine;
 
 public class StoryManager : MonoBehaviour
 {
-    // [SerializeField] private 
-    
+    [SerializeField] StoryStepsSO StoryDataSO;
+
     private  AnxietyManager anxietyManager;
     private int currentStoryStep = 0;
-
     void Start()
     {
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
         AddListeners();
     }
 
-    public void ModifyStoryStep(object storyStepData)
+    public void ModifyStoryStep(object collisionId)
     {
-        print("I was Invoked");
-        var eventStoryStepData = (StoryStepData) storyStepData;
+        var currentCollisionId = (string)collisionId;
+        StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentStoryStep];
 
+        if (currentStoryData.collisionId != currentCollisionId) return;
 
-        switch (eventStoryStepData.collisionId)
+        foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
         {
-            
+            ProcessAction(storyActionStep);
         }
-        
+
         //
         // print(eventStoryStepData.storyStepType);
         // if (eventStoryStepData.CheckStoryStepTypeExists(StoryStepType.AnxietyUp))
@@ -45,20 +45,36 @@ public class StoryManager : MonoBehaviour
         // }
     }
 
+    private void ProcessAction(BaseStoryStepAction baseStoryStep)
+    {
+        switch (baseStoryStep.actionType)
+        {
+
+            case StoryStepActionType.AdvanceText:
+            //Call Dialogue system to pop out and show people
+                print("Starting New Dialogue");
+                break;
+
+            case StoryStepActionType.ChangeAnxietyLevel:
+                print("Modifying Anxiety Level");
+                anxietyManager.ModifyAnxietyState(baseStoryStep.AnxietyLevel);
+                break;
+            
+            case StoryStepActionType.ChangeInteractableState:
+                print("Changing Lock Interactable");
+                // ProcessChangeInteractableLockState(baseStoryStep.InteractableLockState);
+                break;
+        }
+    }
+
     void AddListeners()
     {
         EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
     }
 
-    private void ProcessChangeInteractableLockState(InteractableLockStateChangeRequestEvent actionData)
+    private void ProcessChangeInteractableLockState(InteractableLockStateChangeRequest actionData)
     {
         EventsManager.Instance.InvokeEvent(EventType.OnInteractableChangeLockStateRequest, actionData);
     }
     
-}
-
-public struct InteractableLockStateChangeRequestEvent
-{
-    public string InteractableID;
-    public bool IsInteractable;
 }

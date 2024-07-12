@@ -61,7 +61,7 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
     
     private void OnInteractableLockStateChangeRequest(object eventData)
     {
-        var interactableChangeLockStateRequest = (InteractableLockStateChangeRequestEvent)eventData;
+        var interactableChangeLockStateRequest = (InteractableLockStateChangeRequest)eventData;
 
         if (interactableChangeLockStateRequest.InteractableID != interactableID) return;
 
