@@ -77,7 +77,7 @@ public class StoryManager : MonoBehaviour
 
     void AddListeners()
     {
-        EventsManager.Instance.AddListener(EventType.OnStoryColliderHit, ModifyStoryStep);
+        EventsManager.Instance.AddListener(EventType.OnStoryTriggerHit, ModifyStoryStep);
         EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
 

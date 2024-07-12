@@ -13,7 +13,6 @@ public class Dialogue : MonoBehaviour
     void Start()
     {
         textComponent.text = string.Empty;
-        StartDialogue(textDialogue);
     }
 
     void Update()
