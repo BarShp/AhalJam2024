@@ -72,6 +72,10 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
             case StoryStepActionType.GoToBattle:
                 SceneManager.LoadScene(baseStoryStep.BattleData.battleSceneId);
                 break;
+            
+            case StoryStepActionType.GoToScene:
+                SceneManager.LoadScene(baseStoryStep.SceneId);
+                break;
         }
     }
 

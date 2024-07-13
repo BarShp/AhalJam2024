@@ -7,7 +7,8 @@ public enum StoryStepActionType
     AdvanceText,
     ChangeAnxietyLevel,
     ChangeInteractableState,
-    GoToBattle
+    GoToBattle,
+    GoToScene
 }
 
 [Serializable]
@@ -33,6 +34,9 @@ public struct BaseStoryStepAction
 
     [ShowIf("actionType", StoryStepActionType.GoToBattle)]
     public BattleData BattleData;
+    
+    [ShowIf("actionType", StoryStepActionType.GoToScene)]
+    public int SceneId;
 }
 
 [Serializable]
