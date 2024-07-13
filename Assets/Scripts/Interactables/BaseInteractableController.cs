@@ -37,6 +37,8 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
             if (notInteractableTextObject == null) return;
 
             notInteractableTextObject.gameObject.SetActive(true);
+            
+            StopAllCoroutines();
             StartCoroutine(DisableNotInteractableText());
             
             notInteractableTextObject.text = notInteractableText;

@@ -1,54 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SoundManager : BaseSingletonMonoBehaviour<SoundManager>
 {
-    private List<AudioSource> currentlyRunningSounds = new List<AudioSource>();
+    [SerializeField] SoundAudioClip[] myAudioClips;
+
+    [SerializeField] private List<AudioSource> audioSources;
+    
     public enum Sound
     {
         MainMenu,
         Combat,
+        Interact
     }
 
-
-    [SerializeField] SoundAudioClip[] myAudioClips;
-
-    private AudioSource createAudioGameObject()
+    public void PLaySound(Sound sound)
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        return audioSource;
-    }
-
-    public void PlayOneShot(Sound sound)
-    {
-        AudioSource audioSource = createAudioGameObject();
-        audioSource.volume = audioSource.volume / 2;
-        audioSource.PlayOneShot(GetAudioClip(sound));
-    }
-
-    public void PlayOngoingMusic(Sound sound)
-    {
-        AudioSource audioSource = createAudioGameObject();
-        audioSource.loop = true;
-        audioSource.volume = audioSource.volume / 2;
-        audioSource.PlayOneShot(GetAudioClip(sound));
-        currentlyRunningSounds.Add(audioSource);
-    }
-
-    public void ClearSounds()
-    {
-        if (currentlyRunningSounds.Count != 0)
+        var audioClip = myAudioClips.First(soundClips => soundClips.sound == sound).audioClip;
+        
+        for (var i = 0; i < audioSources.Count; i++)
         {
-            foreach (AudioSource audioSource in currentlyRunningSounds)
-            {
-                print(audioSource.name);
-                audioSource.Stop();
-            }
+            var audioSource = audioSources[i];
+            if (audioSource.isPlaying) continue;
+
+            audioSource.clip = audioClip;
+            audioSource.Play();
+            return;
         }
+
+        audioSources[0].clip = audioClip;
+        audioSources[0].Play();
     }
+    
 
     private AudioClip GetAudioClip(Sound sound)
     {
