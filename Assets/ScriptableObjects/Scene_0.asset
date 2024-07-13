@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   storyStepsData:
-  - collisionId: 0
+  - currentTriggerId: 0
     storyStepActions:
     - actionType: 0
       AnxietyLevel: 0
@@ -32,7 +32,8 @@ MonoBehaviour:
         IsInteractable: 0
       BattleData:
         battleSceneId: 0
-  - collisionId: 1
+      SceneId: 0
+  - currentTriggerId: 1
     storyStepActions:
     - actionType: 0
       AnxietyLevel: 0
@@ -42,3 +43,84 @@ MonoBehaviour:
         IsInteractable: 0
       BattleData:
         battleSceneId: 0
+      SceneId: 0
+  - currentTriggerId: 2
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: 5f688653995a579419e439ffdd8a8882, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+    - actionType: 2
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 3
+        IsInteractable: 1
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+  - currentTriggerId: 3
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: 90b79b5b06722c44cabffa68f4828418, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+    - actionType: 2
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 3
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+    - actionType: 2
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 4
+        IsInteractable: 1
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+  - currentTriggerId: 4
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: f3b3113c1a6f101469a32feda81854f5, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+    - actionType: 2
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 4
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0
+  - currentTriggerId: 5
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: a4009c3776de325468982641849d5e13, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+      SceneId: 0

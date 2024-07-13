@@ -18,18 +18,18 @@ public class DialogueManager : BaseMonoBehaviour
         textComponent.text = string.Empty;
     }
 
-    void Update()
+    void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.G) && textDialogue != null)
+        if((Input.GetKeyDown(KeyCode.G) || textDialogue.lines[index].AutoSkip) && textDialogue != null)
         {
-            if (textComponent.text == textDialogue.lines[index])
+            if (textComponent.text == textDialogue.lines[index].text)
             {
                 NextLine();
             }
-            else
+            else if (!textDialogue.lines[index].AutoSkip)
             {
                 StopAllCoroutines();
-                textComponent.text = textDialogue.lines[index];
+                textComponent.text = textDialogue.lines[index].text;
             }
         }
     }
@@ -53,10 +53,27 @@ public class DialogueManager : BaseMonoBehaviour
 
     IEnumerator TypeLine()
     {
-        foreach(char c in textDialogue.lines[index].ToCharArray())
+        switch (textDialogue.lines[index].speaker)
+        {
+            case DialogueSpeaker.VoicesInMyHead:
+                textComponent.color = Color.black;            
+                textComponent.fontStyle = FontStyles.Italic;
+                break;
+
+            case DialogueSpeaker.Therapist:
+                textComponent.color = Color.grey;
+                textComponent.fontStyle = FontStyles.Normal;                
+                break;
+            
+            case DialogueSpeaker.Self:
+                textComponent.color = Color.black;
+                textComponent.fontStyle = FontStyles.Normal;
+            break;
+        }
+        foreach(char c in textDialogue.lines[index].text.ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(textDialogue.textSpeed);
+            yield return new WaitForSeconds(textDialogue.lines[index].textSpeed);
         }
     }
 

@@ -13,9 +13,18 @@ MonoBehaviour:
   m_Name: Scene_0_Dialogue_1
   m_EditorClassIdentifier: 
   lines:
-  - 'Ocdeeznuts: Home at last.'
-  - 'Ocdeeznuts: The last session was...... rough..'
-  - ..
-  - Oh, I left the curtains open.
-  - Might as well close them.
-  textSpeed: 0.125
+  - text: Home at last.
+    textSpeed: 0.125
+    speaker: 0
+  - text: That last session was... rough.
+    textSpeed: 0.125
+    speaker: 0
+  - text: ...
+    textSpeed: 0.125
+    speaker: 0
+  - text: Oh, I left the curtains open.
+    textSpeed: 0.125
+    speaker: 0
+  - text: I should go close them.
+    textSpeed: 0.125
+    speaker: 0

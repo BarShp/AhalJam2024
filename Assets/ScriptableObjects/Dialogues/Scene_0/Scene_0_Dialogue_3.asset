@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Scene_0_Dialogue_3
   m_EditorClassIdentifier: 
   lines:
-  - <i></i>
-  - <i>Did someone break in while I was not here?</i>
-  textSpeed: 0.125
+  - text: That's better, now let's go play some games, this day was awful.
+    textSpeed: 0.125
+    speaker: 0

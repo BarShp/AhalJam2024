@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Scene_0_Dialogue_2
   m_EditorClassIdentifier: 
   lines:
-  - <i>Anyone can see my house without the curtains...</i>
-  - <i>Did someone break in while I was not here?</i>
-  textSpeed: 0.125
+  - text: Anyone can see my house without the curtains...
+    textSpeed: 0.125
+    speaker: 2
+  - text: Did someone break in whyile I was not here?
+    textSpeed: 0.125
+    speaker: 2
+  - text: Stop with this non-sense, just go.
+    textSpeed: 0.125
+    speaker: 0
