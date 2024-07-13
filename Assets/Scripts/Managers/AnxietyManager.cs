@@ -1,20 +1,14 @@
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class AnxietyManager : BaseMonoBehaviour
 {
     [SerializeField] private Dictionary<AnxietyState, Sprite> anxietyStateToSprite;
 
-    private SpriteRenderer frenchThingySprite;
     public AnxietyState currentState = AnxietyState.Calm;
-
-    private void Awake()
-    {
-        frenchThingySprite = GetComponent<SpriteRenderer>();
-    }
-
+    
     private void Start() 
     {
         SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(currentState);
@@ -31,10 +25,17 @@ public class AnxietyManager : BaseMonoBehaviour
 
     private void SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(AnxietyState state)
     {
-        if (frenchThingySprite == null) return;
+        // For some reason it didn't allow me to serialize field the image.
+
+        var frenchThingy = GameObject.FindWithTag("FrenchThingyImage");
+        if (frenchThingy == null) return;
+        var frenchThingyImage = frenchThingy.GetComponent<Image>();
+        
+        if (frenchThingyImage == null) return;
         
         var sprite = anxietyStateToSprite[state];
-        frenchThingySprite.sprite = sprite;
+        frenchThingyImage.color = new Color(0, 0, 0, sprite == null ? 0 : 255);
+        frenchThingyImage.sprite = sprite;
     }
 }
 
