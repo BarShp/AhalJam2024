@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using UnityEngine;
 
 public class BaseSingletonMonoBehaviour<T> : BaseMonoBehaviour where T : BaseMonoBehaviour
@@ -22,6 +23,16 @@ public class BaseSingletonMonoBehaviour<T> : BaseMonoBehaviour where T : BaseMon
             instance = obj.AddComponent<T>();
             return instance;
         }
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     // Optionally, you can define additional Singleton behavior here, such as Awake or OnDestroy

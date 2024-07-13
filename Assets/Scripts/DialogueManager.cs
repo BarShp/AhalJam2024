@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : MonoBehaviour
+public class DialogueManager : BaseSingletonMonoBehaviour<DialogueManager>
 {
     DialogueSO textDialogue;
     public TextMeshProUGUI textComponent;

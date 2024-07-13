@@ -90,6 +90,11 @@ public class BreathingController : BaseMonoBehaviour
 
         // Don't ask, I'm tired
         heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
+
+        if (Mathf.Approximately(currentAnxiety, 1))
+        {
+            EventsManager.Instance.InvokeEvent(EventType.OnPlayerLoss);
+        }
     }
 
     private void SetBreathingPointYPos(float normalizedValue)

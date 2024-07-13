@@ -1,23 +1,28 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class StoryManager : MonoBehaviour
+public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
 {
     [SerializeField] StoryStepsSO StoryDataSO;
 
-    private  AnxietyManager anxietyManager;
-    private Dialogue dialogueManager;
-    private CheckpointManager checkpointManager;
+    private AnxietyManager anxietyManager;
+    private DialogueManager _dialogueManagerManager;
     private int currentStoryStep = 0;
 
+    public int CurrentStoryStep => currentStoryStep;
+    
     void Start()
     {
         anxietyManager = FindFirstObjectByType<AnxietyManager>();
-        dialogueManager = FindFirstObjectByType<Dialogue>();
-        checkpointManager = FindFirstObjectByType<CheckpointManager>();
+        _dialogueManagerManager = FindFirstObjectByType<DialogueManager>();
         AddListeners();
+    }
+
+    public void GoToStoryStepIndex(int index)
+    {
+        currentStoryStep = index;
+        ProcessAndContinueCurrentStep();
     }
 
     public void ModifyStoryStep(object collisionId)
@@ -30,15 +35,15 @@ public class StoryManager : MonoBehaviour
 
         if (currentStoryData.collisionId != currentCollisionId) return;
 
-        foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
+        ProcessAndContinueCurrentStep();
+    }
+
+    private void ProcessAndContinueCurrentStep()
+    {
+        foreach (BaseStoryStepAction storyActionStep in StoryDataSO.storyStepsData[currentStoryStep].storyStepActions)
         {
             ProcessAction(storyActionStep);
         }
-
-        if(currentStoryData.setCheckpoint)
-        {
-            checkpointManager.ProcessSetCheckpoint();
-        };
 
         currentStoryStep += 1;        
     }
@@ -63,6 +68,10 @@ public class StoryManager : MonoBehaviour
                 print("Changing Lock Interactable");
                 ProcessChangeInteractableLockState(baseStoryStep.InteractableLockState);
                 break;
+            
+            case StoryStepActionType.GoToBattle:
+                SceneManager.LoadScene(baseStoryStep.BattleData.battleSceneId);
+                break;
         }
     }
 
@@ -70,14 +79,13 @@ public class StoryManager : MonoBehaviour
     void AddListeners()
     {
         EventsManager.Instance.AddListener(EventType.OnStoryTriggerHit, ModifyStoryStep);
-        EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
 
 
     private void ProcessInitiateNewDialogue(DialogueSO dialogueSO)
     {
         //Temporary print to until merged with dialogue system
-        dialogueManager.StartDialogue(dialogueSO);
+        _dialogueManagerManager.StartDialogue(dialogueSO);
     }
 
     private void ProcessChangeAnxietyLevel(AnxietyState state)

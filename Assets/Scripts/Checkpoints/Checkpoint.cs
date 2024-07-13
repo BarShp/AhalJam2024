@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Checkpoint
+public class Checkpoint
 {
     public int StoryStepCheckpoint;
     public int SceneId;

@@ -31,6 +31,8 @@ public class AnxietyManager : BaseMonoBehaviour
 
     private void SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(AnxietyState state)
     {
+        if (frenchThingySprite == null) return;
+        
         var sprite = anxietyStateToSprite[state];
         frenchThingySprite.sprite = sprite;
     }

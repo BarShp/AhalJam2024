@@ -6,38 +6,49 @@ using UnityEngine.SceneManagement;
 
 public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
 {
+    private Transform playerTransform;
     private Checkpoint currentCheckpoint;
-    private Rigidbody2D playerRigidbody;
 
-    private void Start() 
+    private AnxietyManager _anxietyManager;
+    
+    private void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        playerRigidbody = FindAnyObjectByType<PlayerMovment>().GetComponent<Rigidbody2D>();
+        _anxietyManager = FindAnyObjectByType<AnxietyManager>();
+        playerTransform = FindAnyObjectByType<PlayerMovment>().transform;
         EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
     
-    private void ProcessSetCheckpoint(int currentStoryStep, AnxietyState anxietyState)
+    public void SetCheckpoint(Checkpoint checkpointData)
     {
-        print("Set Checkpoint!");
-        currentCheckpoint = new Checkpoint 
+        currentCheckpoint = checkpointData;
+    } 
+
+    private void ResetBackToCheckpoint(object data)
+    {
+        //  TODO: Ben fix
+        // DialogueManager.Instance.StopAndClearDialogue();
+
+        if (currentCheckpoint == null)
         {
-            StoryStepCheckpoint = currentStoryStep,
-            AnxietyState = anxietyState,
-            CheckpointPosition = playerRigidbody.position,
-            SceneId = SceneManager.GetActiveScene().buildIndex
-        };
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            return;
+        }
+
+        print(currentCheckpoint.StoryStepCheckpoint);
+
+        SceneManager.sceneLoaded += ResetCheckpoint;
+        SceneManager.LoadScene(currentCheckpoint.SceneId);
     }
 
-    private void ResetBackToCheckpoint(object obj)
+    private void ResetCheckpoint(Scene arg0, LoadSceneMode arg1)
     {
-        playerRigidbody.position = currentCheckpoint.CheckpointPosition;
-        dialogueManager.StopAndClearDialogue();
-        print(currentCheckpoint.StoryStepCheckpoint);
-        StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentCheckpoint.StoryStepCheckpoint];
-        foreach (BaseStoryStepAction storyActionStep in currentStoryData.storyStepActions)
-        {
-            ProcessAction(storyActionStep);
-        }
-        anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
+        SceneManager.sceneLoaded -= ResetCheckpoint;
+        
+        _anxietyManager = FindAnyObjectByType<AnxietyManager>();
+        _anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
+        StoryManager.Instance.GoToStoryStepIndex(currentCheckpoint.StoryStepCheckpoint);
+        
+        playerTransform = FindAnyObjectByType<PlayerMovment>().transform;
+        playerTransform.position = currentCheckpoint.CheckpointPosition;
     }
 }
