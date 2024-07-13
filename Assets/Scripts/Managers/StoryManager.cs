@@ -9,7 +9,7 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
     private AnxietyManager anxietyManager;
     private DialogueManager _dialogueManagerManager;
     private int currentStoryStep = 0;
-
+    private int currentStoryStepIndex = 0;
     public int CurrentStoryStep => currentStoryStep;
     
     void Start()
@@ -22,13 +22,14 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
     public void GoToStoryStepIndex(int index)
     {
         currentStoryStep = index;
+        print(currentStoryStep);
         ProcessAndContinueCurrentStep();
     }
 
     public void ModifyStoryStep(object collisionId)
     {
         var currentCollisionId = (string)collisionId;
-
+        print(currentStoryStep);
         if (currentStoryStep > StoryDataSO.storyStepsData.Length - 1) throw new Exception("Trying to get a new story step but StoryData doesn't have any left, dudu plz");
 
         StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentStoryStep];
@@ -85,11 +86,13 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
     private void ProcessInitiateNewDialogue(DialogueSO dialogueSO)
     {
         //Temporary print to until merged with dialogue system
+        _dialogueManagerManager = FindFirstObjectByType<DialogueManager>();
         _dialogueManagerManager.StartDialogue(dialogueSO);
     }
 
     private void ProcessChangeAnxietyLevel(AnxietyState state)
     {
+        anxietyManager = FindAnyObjectByType<AnxietyManager>();
         anxietyManager.ModifyAnxietyState(state);
     }
 

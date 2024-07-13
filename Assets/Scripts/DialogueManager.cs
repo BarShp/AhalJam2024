@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Core;
 
-public class DialogueManager : BaseSingletonMonoBehaviour<DialogueManager>
+public class DialogueManager : BaseMonoBehaviour
 {
     DialogueSO textDialogue;
     public TextMeshProUGUI textComponent;

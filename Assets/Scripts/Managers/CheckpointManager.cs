@@ -10,6 +10,7 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
     private Checkpoint currentCheckpoint;
 
     private AnxietyManager _anxietyManager;
+    private DialogueManager _dialogueManager;
     
     private void Start()
     {
@@ -26,7 +27,6 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
     private void ResetBackToCheckpoint(object data)
     {
         //  TODO: Ben fix
-        // DialogueManager.Instance.StopAndClearDialogue();
 
         if (currentCheckpoint == null)
         {
@@ -43,9 +43,12 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
     private void ResetCheckpoint(Scene arg0, LoadSceneMode arg1)
     {
         SceneManager.sceneLoaded -= ResetCheckpoint;
-        
+        _dialogueManager = FindAnyObjectByType<DialogueManager>();
+        _dialogueManager.StopAndClearDialogue();
+
         _anxietyManager = FindAnyObjectByType<AnxietyManager>();
         _anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
+        
         StoryManager.Instance.GoToStoryStepIndex(currentCheckpoint.StoryStepCheckpoint);
         
         playerTransform = FindAnyObjectByType<PlayerMovment>().transform;
