@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CombatHUD
+    uniqueID: 1745268451
+    locked: 0

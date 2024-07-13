@@ -8,7 +8,7 @@ public class AnxietyManager : BaseMonoBehaviour
     [SerializeField] private Dictionary<AnxietyState, Sprite> anxietyStateToSprite;
 
     private SpriteRenderer frenchThingySprite;
-    private AnxietyState currentState = AnxietyState.Calm;
+    public AnxietyState currentState = AnxietyState.Calm;
 
     private void Awake()
     {
@@ -31,6 +31,8 @@ public class AnxietyManager : BaseMonoBehaviour
 
     private void SetAnxietyImageOrFrenchNameThatDaniCalledItVANDATASOMETHING(AnxietyState state)
     {
+        if (frenchThingySprite == null) return;
+        
         var sprite = anxietyStateToSprite[state];
         frenchThingySprite.sprite = sprite;
     }

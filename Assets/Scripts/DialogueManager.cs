@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Core;
 
-public class Dialogue : MonoBehaviour
+public class DialogueManager : BaseMonoBehaviour
 {
-    [SerializeField] DialogueSO textDialogue;
+    DialogueSO textDialogue;
+    private GameObject dialogueBox;
     public TextMeshProUGUI textComponent;
-
     private int index;
 
     void Start()
     {
+        dialogueBox = GameObject.Find("DialogueBox");
+        dialogueBox.SetActive(false);
         textComponent.text = string.Empty;
-        StartDialogue(textDialogue);
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.G) && textDialogue != null)
         {
             if (textComponent.text == textDialogue.lines[index])
             {
@@ -32,11 +34,21 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void StartDialogue(DialogueSO newDialogueText)
-    {
-        index = 0;
+    public void StartDialogue(DialogueSO newDialogueText)
+    {                
+        StopAndClearDialogue();
+        EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, true);
+        dialogueBox.SetActive(true);
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
+        
+    }
+
+    public void StopAndClearDialogue()
+    {
+        StopAllCoroutines();
+        textComponent.text = string.Empty;        
+        index = 0;
     }
 
     IEnumerator TypeLine()
@@ -54,11 +66,12 @@ public class Dialogue : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            StartCoroutine (TypeLine());
+            StartCoroutine(TypeLine());
         }
         else
         {
-            gameObject.SetActive(false);
+            dialogueBox.SetActive(false);
+            EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, false);
         }
             
     }

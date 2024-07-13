@@ -68,6 +68,8 @@ public class EventListenersData
 // Enum representing different event types.
 public enum EventType
 {
-    OnStoryColliderHit,
-    OnInteractableChangeLockStateRequest
+    OnStoryTriggerHit,
+    OnPlayerLoss,
+    OnInteractableChangeLockStateRequest,
+    OnDialogueChange,
 }

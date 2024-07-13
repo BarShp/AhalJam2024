@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e609326bff13eba4fa60f2a8e009bee2, type: 3}
+  m_Name: New Story Steps SO
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  storyStepsData:
+  - collisionId: kekW
+    storyStepActions:
+    - actionType: 1
+      AnxietyLevel: 3
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+    - actionType: 2
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: a
+        IsInteractable: 1
+      BattleData:
+        battleSceneId: 0
+  - collisionId: kekW2
+    storyStepActions:
+    - actionType: 1
+      AnxietyLevel: 2
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+  - collisionId: kekW3
+    storyStepActions:
+    - actionType: 1
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: 6f962172f753c70409a3492015a5f781, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+  - collisionId: kekW4
+    storyStepActions:
+    - actionType: 3
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 1
