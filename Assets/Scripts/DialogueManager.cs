@@ -37,8 +37,8 @@ public class DialogueManager : BaseMonoBehaviour
     public void StartDialogue(DialogueSO newDialogueText)
     {                
         StopAndClearDialogue();
-        dialogueBox.SetActive(true);
         EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, true);
+        dialogueBox.SetActive(true);
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
         
