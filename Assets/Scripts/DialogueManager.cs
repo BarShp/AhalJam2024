@@ -6,20 +6,21 @@ using Core;
 
 public class DialogueManager : BaseMonoBehaviour
 {
-    DialogueSO textDialogue;
-    private GameObject dialogueBox;
-    public TextMeshProUGUI textComponent;
+    private DialogueSO textDialogue;
+    [SerializeField] GameObject dialogueBox;
+    private TextMeshProUGUI textComponent;
     private int index;
 
     void Start()
     {
-        dialogueBox = GameObject.Find("DialogueBox");
-        dialogueBox.SetActive(false);
+        textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
         textComponent.text = string.Empty;
+        dialogueBox.SetActive(false);
     }
 
     void Update() 
     {
+        if (textComponent.text == string.Empty) return;
         if((Input.GetKeyDown(KeyCode.G) || textDialogue.lines[index].AutoSkip) && textDialogue != null)
         {
             if (textComponent.text == textDialogue.lines[index].text)
@@ -47,6 +48,7 @@ public class DialogueManager : BaseMonoBehaviour
     public void StopAndClearDialogue()
     {
         StopAllCoroutines();
+        textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
         textComponent.text = string.Empty;        
         index = 0;
     }

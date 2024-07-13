@@ -26,8 +26,6 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
 
     private void ResetBackToCheckpoint(object data)
     {
-        //  TODO: Ben fix
-
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

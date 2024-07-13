@@ -124,3 +124,14 @@ MonoBehaviour:
       BattleData:
         battleSceneId: 0
       SceneId: 0
+  - currentTriggerId: 6
+    storyStepActions:
+    - actionType: 3
+      AnxietyLevel: 0
+      DialogueText: {fileID: 0}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 1
+      SceneId: 0

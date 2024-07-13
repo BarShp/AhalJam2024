@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 353732593430662161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.59010416, y: 0.59010416, z: 0.59010416}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6799164178298562112}
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6329833282778534459
 Canvas:
   m_ObjectHideFlags: 0
@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 6799164178298562112}
   - component: {fileID: 4779577884279046860}
   - component: {fileID: 3838371163622570802}
-  - component: {fileID: 8800204009930634497}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -179,20 +178,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8800204009930634497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5156230486286149701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c149db308b28684bb8e667c7a803152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textDialogue: {fileID: 0}
-  textComponent: {fileID: 821195190831207414}
 --- !u!1 &8838102217499984302
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class CombatDialogue : MonoBehaviour
 
     private int startingMessagesIndex = 0;
     private bool isDialoguesRunning;
+    private bool gameStarted = false;
 
     private void Start()
     {
@@ -26,12 +27,13 @@ public class CombatDialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             startingMessagesIndex++;
-            if (startingMessagesIndex >= startingMessages.Length)
+            if (startingMessagesIndex >= startingMessages.Length && !gameStarted)
             {
                 breathingController.StartGame();
+                gameStarted = true;
             }
         }
     }

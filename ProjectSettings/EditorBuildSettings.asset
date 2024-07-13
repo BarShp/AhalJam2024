@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene.unity
     guid: 87e659cfcb50bd845a8370cfa12ce8ed
   - enabled: 1
-    path: Assets/Scenes/BenTestScene.unity
-    guid: 07ea694c53c21824cb369b7225bedd92
+    path: Assets/Scenes/ActualGame/Scene_0.unity
+    guid: ae20dffe091195d4d9b8def63b404339
   m_configObjects: {}
