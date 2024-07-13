@@ -28,13 +28,14 @@ public class BreathingController : BaseMonoBehaviour
     private float anxietyGainSpeed;
     
     private VertexPath breathingPatternVertexPath;
-    
+
     private float currentBreathingPointNormalized;
-    private float targetBreathingPointNormalized;
-    private float currentVelocity;
 
     [ReadOnly] [SerializeField] private float currentAnxiety = 0;
 
+    private bool isGameStarted = false;
+    private bool firstPointReached = false;
+    
     private float GetWorldLimitMinY() => transform.position.y - breathingPointMinLimitY;
     private float GetWorldLimitMaxY() => transform.position.y + breathingPointMaxLimitY;
     
@@ -45,8 +46,16 @@ public class BreathingController : BaseMonoBehaviour
         anxietyGainSpeed = 1 / timeToMaxAnxietyInSeconds;
     }
 
+    [ContextMenu("Start Game")]
+    public void StartGame()
+    {
+        isGameStarted = true;
+    }
+
     protected void Update()
     {
+        if (!isGameStarted) return;
+        
         UpdateBreathingPatternPosition();
         UpdateBreathingPoint();
         UpdateBreathingQuality();
@@ -55,6 +64,10 @@ public class BreathingController : BaseMonoBehaviour
     private void UpdateBreathingPatternPosition()
     {
         breathingPatternPathCreator.transform.position += breathingPatternSpeed * Time.deltaTime * Vector3.left;
+        
+        if (firstPointReached) return;
+        firstPointReached = breathingPatternVertexPath.GetClosestTimeOnPath(breathingPoint.position) > 0;
+        Debug.Log("Starting to calculate anxiety level");
     }
 
     private void UpdateBreathingPoint()
@@ -72,6 +85,8 @@ public class BreathingController : BaseMonoBehaviour
 
     private void UpdateBreathingQuality()
     {
+        if (!firstPointReached) return;
+        
         var closestPointOnPath = breathingPatternVertexPath.GetClosestPointOnPath(breathingPoint.position);
         var distanceFromPath = Vector3.Distance(breathingPoint.position, closestPointOnPath);
 
