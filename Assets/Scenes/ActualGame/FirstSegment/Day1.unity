@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6329833282778534459, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6799164178298562112, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
       propertyPath: m_SizeDelta.x
       value: -268.8134
@@ -1869,7 +1873,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 185309712, guid: 29ffd7e8125671241acd58e4c4b7318d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2908,9 +2912,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: -2136462543, guid: 2763bde1c099bb04aa98d1c383398ac1, type: 3}
-    - {fileID: 509279184, guid: 2763bde1c099bb04aa98d1c383398ac1, type: 3}
+    - {fileID: 118166482, guid: 2763bde1c099bb04aa98d1c383398ac1, type: 3}
     - {fileID: 769422331, guid: 2763bde1c099bb04aa98d1c383398ac1, type: 3}
+    - {fileID: -154388313, guid: 2763bde1c099bb04aa98d1c383398ac1, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []

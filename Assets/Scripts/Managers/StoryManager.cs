@@ -1,8 +1,9 @@
 using System;
+using Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
+public class StoryManager : BaseMonoBehaviour
 {
     [SerializeField] StoryStepsSO StoryDataSO;
 
@@ -29,7 +30,7 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
     {
         var currentTriggerId = (string)triggerId;
         print(currentStoryStep);
-        if (currentStoryStep > StoryDataSO.storyStepsData.Length - 1) throw new Exception("Trying to get a new story step but StoryData doesn't have any left, dudu plz");
+        // if (currentStoryStep > StoryDataSO.storyStepsData.Length - 1) throw new Exception("Trying to get a new story step but StoryData doesn't have any left, dudu plz");
 
         StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentStoryStep];
 
