@@ -60,6 +60,8 @@ public class BreathingController : BaseMonoBehaviour
     private void Start()
     {
         beatingHeartAudioSource = SoundManager.Instance.PlayContinuous(SoundManager.Sound.HeartBeat);
+        currentAnxiety = 0.5f;
+        SyncAnxietyView();
     }
 
     [ContextMenu("Start Game")]
@@ -136,19 +138,25 @@ public class BreathingController : BaseMonoBehaviour
         }
 
         currentAnxiety = Mathf.Clamp(currentAnxiety, 0, 1);
-        
-        anxietyBar.fillAmount = currentAnxiety;
 
-        // Don't ask, I'm tired
-        heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
-        SoundManager.Instance.SetAudioSourceSpeed(beatingHeartAudioSource, currentAnxiety + 0.5f);
+        SyncAnxietyView();
 
         if (Mathf.Approximately(currentAnxiety, 1))
         {
             combatDialogue.EndDialogues();
             SoundManager.Instance.StopContinuous(SoundManager.Sound.HeartBeat);
             EventsManager.Instance.InvokeEvent(EventType.OnPlayerLoss);
+            breathingPatternSpeed = 0;
         }
+    }
+
+    private void SyncAnxietyView()
+    {
+        // Don't ask, I'm tired
+        
+        anxietyBar.fillAmount = currentAnxiety;
+        heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
+        SoundManager.Instance.SetAudioSourceSpeed(beatingHeartAudioSource, currentAnxiety + 0.5f);
     }
 
     private void GameWon()
