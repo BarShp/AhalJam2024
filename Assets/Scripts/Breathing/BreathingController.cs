@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using Core;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BreathingController : BaseMonoBehaviour
@@ -25,16 +27,23 @@ public class BreathingController : BaseMonoBehaviour
 
     [SerializeField] private Image anxietyBar;
     
+    [SerializeField] private CombatDialogue combatDialogue;
+    
     private float anxietyGainSpeed;
     
     private VertexPath breathingPatternVertexPath;
-    
+
     private float currentBreathingPointNormalized;
-    private float targetBreathingPointNormalized;
-    private float currentVelocity;
 
     [ReadOnly] [SerializeField] private float currentAnxiety = 0;
 
+    [SerializeField] private float loadNextSceneTimer;
+    [SerializeField] private int nextSceneId;
+    
+    private bool isGameStarted = false;
+    private bool firstPointReached = false;
+    private bool lastPointReached = false;
+    
     private float GetWorldLimitMinY() => transform.position.y - breathingPointMinLimitY;
     private float GetWorldLimitMaxY() => transform.position.y + breathingPointMaxLimitY;
     
@@ -45,8 +54,17 @@ public class BreathingController : BaseMonoBehaviour
         anxietyGainSpeed = 1 / timeToMaxAnxietyInSeconds;
     }
 
+    [ContextMenu("Start Game")]
+    public void StartGame()
+    {
+        isGameStarted = true;
+        combatDialogue.StartDialogues();
+    }
+
     protected void Update()
     {
+        if (!isGameStarted) return;
+        
         UpdateBreathingPatternPosition();
         UpdateBreathingPoint();
         UpdateBreathingQuality();
@@ -55,6 +73,22 @@ public class BreathingController : BaseMonoBehaviour
     private void UpdateBreathingPatternPosition()
     {
         breathingPatternPathCreator.transform.position += breathingPatternSpeed * Time.deltaTime * Vector3.left;
+
+        if (!firstPointReached)
+        {
+            firstPointReached = breathingPatternVertexPath.GetClosestTimeOnPath(breathingPoint.position) > 0;
+            Debug.Log("Starting to calculate anxiety level");
+            return;
+        }
+
+        if (!lastPointReached)
+        {
+            lastPointReached = breathingPatternVertexPath.GetClosestTimeOnPath(breathingPoint.position) >= 1;
+            if (lastPointReached)
+            {
+                GameWon();
+            }
+        }
     }
 
     private void UpdateBreathingPoint()
@@ -72,6 +106,8 @@ public class BreathingController : BaseMonoBehaviour
 
     private void UpdateBreathingQuality()
     {
+        if (!firstPointReached || lastPointReached) return;
+        
         var closestPointOnPath = breathingPatternVertexPath.GetClosestPointOnPath(breathingPoint.position);
         var distanceFromPath = Vector3.Distance(breathingPoint.position, closestPointOnPath);
 
@@ -93,8 +129,23 @@ public class BreathingController : BaseMonoBehaviour
 
         if (Mathf.Approximately(currentAnxiety, 1))
         {
+            combatDialogue.EndDialogues();
             EventsManager.Instance.InvokeEvent(EventType.OnPlayerLoss);
         }
+    }
+
+    private void GameWon()
+    {
+        StartCoroutine(LoadNextSceneCoroutine());
+    }
+
+    private IEnumerator LoadNextSceneCoroutine()
+    {
+        combatDialogue.EndDialogues();
+        
+        yield return new WaitForSeconds(loadNextSceneTimer);
+
+        SceneManager.LoadScene(nextSceneId);
     }
 
     private void SetBreathingPointYPos(float normalizedValue)

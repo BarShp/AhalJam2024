@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e609326bff13eba4fa60f2a8e009bee2, type: 3}
+  m_Name: Scene_0
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  storyStepsData:
+  - collisionId: 0
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: a139a6475fd71f9439460ddb1147b40d, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
+  - collisionId: 1
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: 4dbb32e9b013e1c4a98a030fd97c0ad1, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
