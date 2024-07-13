@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cecf609ee46cae2488cf89b5a334392d
+guid: 38221bd987adaba44a0dd56c4a13292c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door_white_0
+      name: monsters_me_white_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 37
-        height: 67
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cf7363bb33e58a4d9bdafde37099107
-      internalID: 674550345
+      spriteID: 8fe81b27570fe7c44b9bfc9875966f6e
+      internalID: 778681294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door_white_1
+      name: monsters_me_white_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 64
         y: 0
-        width: 37
-        height: 67
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,71 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e5317fea899ef243b6c91ff8aa9721d
-      internalID: -2019373244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: door_white_2
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 0
-        width: 37
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d23bfe1430013c4419c6aa52faadc173
-      internalID: 1409136280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: door_white_3
-      rect:
-        serializedVersion: 2
-        x: 111
-        y: 0
-        width: 37
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a8043feece8ad3438866882363b802a
-      internalID: 950417778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: door_white_4
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 0
-        width: 37
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21f597ea2c554a049825958ebdf7f456
-      internalID: 1991644374
+      spriteID: ad071684594182b40a270efe9ac9cdb7
+      internalID: -1589747050
       vertices: []
       indices: 
       edges: []
@@ -251,11 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      door_white_0: 674550345
-      door_white_1: -2019373244
-      door_white_2: 1409136280
-      door_white_3: 950417778
-      door_white_4: 1991644374
+      monsters_me_white_0: 778681294
+      monsters_me_white_1: -1589747050
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
