@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,14 @@ public class PlayerMovment : MonoBehaviour
     private bool isFacingRight = true;
     private bool canMove = true;
 
+    private Animator animator;
+
     [SerializeField] private Rigidbody2D rb;
 
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void OnEnable() 
     {
         EventsManager.Instance.AddListener(EventType.OnDialogueChange, toggleDialogueActive);
@@ -36,6 +43,7 @@ public class PlayerMovment : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
         }
     }
 
@@ -47,7 +55,6 @@ public class PlayerMovment : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
-          
         }
     }
 
