@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using Core;
+using TMPro;
 using UnityEngine;
 
 public abstract class BaseInteractableController : BaseMonoBehaviour, IInteractable
@@ -7,6 +9,8 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
     [SerializeField] private string interactableID;
     [SerializeField] protected GameObject interactionTextObject;
     [SerializeField] private bool isInteractable = true;
+    [SerializeField] private TMP_Text notInteractableTextObject;
+    [SerializeField] private string notInteractableText = "I can't do that yet.";
     
     protected abstract void Interaction();
 
@@ -18,13 +22,29 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
     protected void OnDestroy()
     {
         EventsManager.Instance.RemoveListener(EventType.OnInteractableChangeLockStateRequest, OnInteractableLockStateChangeRequest);
+        StopAllCoroutines();
     }
 
     public void Interact()
     {
-        if (!isInteractable) return;
+        if (!isInteractable)
+        {
+            if (notInteractableTextObject == null) return;
+
+            notInteractableTextObject.gameObject.SetActive(true);
+            StartCoroutine(DisableNotInteractableText());
+            
+            notInteractableTextObject.text = notInteractableText;
+            return;
+        }
         
         Interaction();
+    }
+
+    public IEnumerator DisableNotInteractableText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        notInteractableTextObject.gameObject.SetActive(false);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)
