@@ -10,10 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcbdccf6c35fa2a4bbd64ea91fe69267, type: 3}
-  m_Name: Scene_0_Dialogue_0
+  m_Name: Scene_0_Dialogue_4
   m_EditorClassIdentifier: 
   lines:
-  - text: See you next week, Dudu.
+  - text: Should I check the rest of the windows?
     textSpeed: 0.125
-    speaker: 1
-    AutoSkip: 0
+    speaker: 2
+  - text: Did you check the window's ledge?
+    textSpeed: 0.125
+    speaker: 2
+  - text: What if someone's already here?
+    textSpeed: 0.125
+    speaker: 2
+  - text: ...
+    textSpeed: 0.125
+    speaker: 2

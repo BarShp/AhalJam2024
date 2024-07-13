@@ -2100,7 +2100,7 @@ MonoBehaviour:
   combatDialogue: {fileID: 1739689346}
   currentAnxiety: 0
   loadNextSceneTimer: 4
-  nextSceneId: 2
+  nextSceneId: 1
 --- !u!4 &327904996
 Transform:
   m_ObjectHideFlags: 0
