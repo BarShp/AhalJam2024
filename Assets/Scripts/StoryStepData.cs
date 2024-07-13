@@ -1,19 +1,21 @@
 using System;
 using System.Diagnostics;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 public enum StoryStepActionType
 {
     AdvanceText,
     ChangeAnxietyLevel,
     ChangeInteractableState,
-    GoToBattle
+    GoToBattle,
+    GoToScene
 }
 
 [Serializable]
 public struct StoryStepData
 {
-    public string collisionId;
+    [FormerlySerializedAs("collisionId")] public string currentTriggerId;
     public BaseStoryStepAction[] storyStepActions;
 }
 
@@ -33,6 +35,9 @@ public struct BaseStoryStepAction
 
     [ShowIf("actionType", StoryStepActionType.GoToBattle)]
     public BattleData BattleData;
+    
+    [ShowIf("actionType", StoryStepActionType.GoToScene)]
+    public int SceneId;
 }
 
 [Serializable]

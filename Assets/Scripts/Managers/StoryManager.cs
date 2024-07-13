@@ -25,15 +25,15 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
         ProcessAndContinueCurrentStep();
     }
 
-    public void ModifyStoryStep(object collisionId)
+    public void ModifyStoryStep(object triggerId)
     {
-        var currentCollisionId = (string)collisionId;
+        var currentTriggerId = (string)triggerId;
         print(currentStoryStep);
         if (currentStoryStep > StoryDataSO.storyStepsData.Length - 1) throw new Exception("Trying to get a new story step but StoryData doesn't have any left, dudu plz");
 
         StoryStepData currentStoryData = StoryDataSO.storyStepsData[currentStoryStep];
 
-        if (currentStoryData.collisionId != currentCollisionId) return;
+        if (currentStoryData.currentTriggerId != currentTriggerId) return;
 
         ProcessAndContinueCurrentStep();
     }
@@ -71,6 +71,10 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
             
             case StoryStepActionType.GoToBattle:
                 SceneManager.LoadScene(baseStoryStep.BattleData.battleSceneId);
+                break;
+            
+            case StoryStepActionType.GoToScene:
+                SceneManager.LoadScene(baseStoryStep.SceneId);
                 break;
         }
     }

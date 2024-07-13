@@ -25,6 +25,11 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
         StopAllCoroutines();
     }
 
+    public void TriggerStoryWithInteractableID()
+    {
+        EventsManager.Instance.InvokeEvent(EventType.OnStoryTriggerHit, interactableID);
+    }
+
     public void Interact()
     {
         if (!isInteractable)
@@ -32,6 +37,8 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
             if (notInteractableTextObject == null) return;
 
             notInteractableTextObject.gameObject.SetActive(true);
+            
+            StopAllCoroutines();
             StartCoroutine(DisableNotInteractableText());
             
             notInteractableTextObject.text = notInteractableText;
