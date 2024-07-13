@@ -10,7 +10,7 @@ public class InteractableTextController : MonoBehaviour
     
     [SerializeField] private string interactableInputChar = "E";
     [SerializeField] private TextMeshProUGUI interactableTextMeshPro;
-
+    
     protected void Start()
     {
         interactableTextMeshPro.text = text.Replace("{key}", $"'{interactableInputChar}'");
