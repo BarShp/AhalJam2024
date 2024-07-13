@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ActualGame/Scene_0.unity
+    path: Assets/Scenes/ActualGame/FirstSegment/Day1.unity
     guid: ae20dffe091195d4d9b8def63b404339
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
+    path: Assets/Scenes/ActualGame/FirstSegment/BattleScene.unity
     guid: 87e659cfcb50bd845a8370cfa12ce8ed
+  - enabled: 1
+    path: Assets/Scenes/ActualGame/SecondSegment/Day2.unity
+    guid: 3003800d406e3a64e9e2a40657f77b7c
+  - enabled: 1
+    path: Assets/Scenes/ActualGame/SecondSegment/SuperMarket.unity
+    guid: 0150302580f7c7843b89ea01b022d5a7
+  - enabled: 1
+    path: Assets/Scenes/ActualGame/SecondSegment/BattleScene.unity
+    guid: 787f33e90221adf4e8f6eaa250299c5d
   m_configObjects: {}

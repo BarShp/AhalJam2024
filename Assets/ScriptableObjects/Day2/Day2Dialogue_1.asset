@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbdccf6c35fa2a4bbd64ea91fe69267, type: 3}
+  m_Name: Day2Dialogue_1
+  m_EditorClassIdentifier: 
+  lines:
+  - text: Ew, why is there an opened yogurt here?
+    textSpeed: 0.075
+    speaker: 0
+    AutoSkip: 0
+  - text: And it's sticky, why is it sticky?
+    textSpeed: 0.125
+    speaker: 0
+    AutoSkip: 0
+  - text: Who knows how long it has been here?
+    textSpeed: 0.125
+    speaker: 2
+    AutoSkip: 0
+  - text: I have nothing to clean it with
+    textSpeed: 0.125
+    speaker: 0
+    AutoSkip: 0
+  - text: You cant clean it, it's going to stay there, who know's if it will infect
+      you? who DROPPED IT? WHERE'S THE SINK?
+    textSpeed: 0.05
+    speaker: 2
+    AutoSkip: 0
