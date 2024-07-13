@@ -11,10 +11,23 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
 
     private AnxietyManager _anxietyManager;
     private DialogueManager _dialogueManager;
+    private StoryManager _storyManager;
+
+    private StoryManager StoryManagerInstance
+    {
+        get
+        {
+            if (_storyManager != null) return _storyManager;
+            
+            _storyManager = FindAnyObjectByType<StoryManager>();
+            return _storyManager;
+        }
+    }
     
     private void Start()
     {
         _anxietyManager = FindAnyObjectByType<AnxietyManager>();
+        _storyManager = FindAnyObjectByType<StoryManager>();
         playerTransform = FindAnyObjectByType<PlayerMovment>().transform;
         EventsManager.Instance.AddListener(EventType.OnPlayerLoss, ResetBackToCheckpoint);
     }
@@ -47,7 +60,7 @@ public class CheckpointManager : BaseSingletonMonoBehaviour<CheckpointManager>
         _anxietyManager = FindAnyObjectByType<AnxietyManager>();
         _anxietyManager.ModifyAnxietyState(currentCheckpoint.AnxietyState);
         
-        StoryManager.Instance.GoToStoryStepIndex(currentCheckpoint.StoryStepCheckpoint);
+        StoryManagerInstance.GoToStoryStepIndex(currentCheckpoint.StoryStepCheckpoint);
         
         playerTransform = FindAnyObjectByType<PlayerMovment>().transform;
         playerTransform.position = currentCheckpoint.CheckpointPosition;
