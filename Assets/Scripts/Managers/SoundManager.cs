@@ -19,7 +19,8 @@ public class SoundManager : BaseSingletonMonoBehaviour<SoundManager>
         Combat,
         Interact,
         Door,
-        Voices
+        Voices,
+        HeartBeat
     }
 
     public void PLaySound(Sound sound)
@@ -31,7 +32,7 @@ public class SoundManager : BaseSingletonMonoBehaviour<SoundManager>
         audioSource.Play();
     }
 
-    public void PlayContinuous(Sound sound, bool startAtRandomTime = false)
+    public AudioSource PlayContinuous(Sound sound, bool startAtRandomTime = false)
     {
         var audioClip = GetAudioSound(sound);
         var audioSource = GetAudioSource();
@@ -41,6 +42,13 @@ public class SoundManager : BaseSingletonMonoBehaviour<SoundManager>
         audioSource.time = Random.Range(0f, audioSource.clip.length);
         audioSource.Play();
         continuousAudioSources.Add(audioSource);
+
+        return audioSource;
+    }
+
+    public void SetAudioSourceSpeed(AudioSource audioSource, float speed)
+    {
+        audioSource.pitch = speed;
     }
 
     public void StopContinuous(Sound sound)

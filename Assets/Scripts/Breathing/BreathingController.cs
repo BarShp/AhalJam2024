@@ -43,6 +43,8 @@ public class BreathingController : BaseMonoBehaviour
     private bool isGameStarted = false;
     private bool firstPointReached = false;
     private bool lastPointReached = false;
+
+    private AudioSource beatingHeartAudioSource;
     
     private float GetWorldLimitMinY() => transform.position.y - breathingPointMinLimitY;
     private float GetWorldLimitMaxY() => transform.position.y + breathingPointMaxLimitY;
@@ -59,6 +61,12 @@ public class BreathingController : BaseMonoBehaviour
     {
         isGameStarted = true;
         combatDialogue.StartDialogues();
+        beatingHeartAudioSource = SoundManager.Instance.PlayContinuous(SoundManager.Sound.HeartBeat);
+    }
+
+    private void OnDestroy()
+    {
+        SoundManager.Instance.StopContinuous(SoundManager.Sound.HeartBeat);
     }
 
     protected void Update()
@@ -86,6 +94,7 @@ public class BreathingController : BaseMonoBehaviour
             lastPointReached = breathingPatternVertexPath.GetClosestTimeOnPath(breathingPoint.position) >= 1;
             if (lastPointReached)
             {
+                SoundManager.Instance.StopContinuous(SoundManager.Sound.HeartBeat);
                 GameWon();
             }
         }
@@ -126,10 +135,12 @@ public class BreathingController : BaseMonoBehaviour
 
         // Don't ask, I'm tired
         heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
+        SoundManager.Instance.SetAudioSourceSpeed(beatingHeartAudioSource, currentAnxiety + 0.5f);
 
         if (Mathf.Approximately(currentAnxiety, 1))
         {
             combatDialogue.EndDialogues();
+            SoundManager.Instance.StopContinuous(SoundManager.Sound.HeartBeat);
             EventsManager.Instance.InvokeEvent(EventType.OnPlayerLoss);
         }
     }
