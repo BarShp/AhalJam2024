@@ -25,6 +25,11 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
         StopAllCoroutines();
     }
 
+    public void TriggerStoryWithInteractableID()
+    {
+        EventsManager.Instance.InvokeEvent(EventType.OnStoryTriggerHit, interactableID);
+    }
+
     public void Interact()
     {
         if (!isInteractable)

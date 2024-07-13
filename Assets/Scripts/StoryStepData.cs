@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 
 public enum StoryStepActionType
 {
@@ -14,7 +15,7 @@ public enum StoryStepActionType
 [Serializable]
 public struct StoryStepData
 {
-    public string collisionId;
+    [FormerlySerializedAs("collisionId")] public string currentTriggerId;
     public BaseStoryStepAction[] storyStepActions;
 }
 
