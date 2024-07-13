@@ -10,10 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcbdccf6c35fa2a4bbd64ea91fe69267, type: 3}
-  m_Name: Scene_0_Dialogue_0
+  m_Name: Scene_0_Dialogue_5
   m_EditorClassIdentifier: 
   lines:
-  - text: See you next week, Dudu.
-    textSpeed: 0.125
-    speaker: 1
+  - text: Did I ever close the other windows?
+    textSpeed: 0.05
+    speaker: 2
+    AutoSkip: 0
+  - text: WHAT IF YOU DIDN'T? YOU ARE JUST TELLING THAT YOURSELF RIGHT NOW? YOU MIGHT
+      DIE TODAY IF YOU DON'T GO CHECK AGAIN!
+    textSpeed: 0.00001
+    speaker: 2
+    AutoSkip: 1
+  - text: Fuck.
+    textSpeed: 0.5
+    speaker: 0
     AutoSkip: 0

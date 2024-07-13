@@ -6,57 +6,77 @@ using Core;
 
 public class DialogueManager : BaseMonoBehaviour
 {
-    DialogueSO textDialogue;
-    private GameObject dialogueBox;
-    public TextMeshProUGUI textComponent;
+    private DialogueSO textDialogue;
+    [SerializeField] GameObject dialogueBox;
+    private TextMeshProUGUI textComponent;
     private int index;
 
     void Start()
     {
-        dialogueBox = GameObject.Find("DialogueBox");
-        dialogueBox.SetActive(false);
+        textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
         textComponent.text = string.Empty;
+        dialogueBox.SetActive(false);
     }
 
-    void Update()
+    void Update() 
     {
-        if(Input.GetKeyDown(KeyCode.G) && textDialogue != null)
+        if (textComponent.text == string.Empty) return;
+        if((Input.GetKeyDown(KeyCode.G) || textDialogue.lines[index].AutoSkip) && textDialogue != null)
         {
-            if (textComponent.text == textDialogue.lines[index])
+            if (textComponent.text == textDialogue.lines[index].text)
             {
                 NextLine();
             }
-            else
+            else if (!textDialogue.lines[index].AutoSkip)
             {
                 StopAllCoroutines();
-                textComponent.text = textDialogue.lines[index];
+                textComponent.text = textDialogue.lines[index].text;
             }
         }
     }
 
     public void StartDialogue(DialogueSO newDialogueText)
-    {                
+    {
         StopAndClearDialogue();
+        SoundManager.Instance.PlayContinuous(SoundManager.Sound.Voices);
         EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, true);
         dialogueBox.SetActive(true);
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
-        
     }
 
     public void StopAndClearDialogue()
     {
+        SoundManager.Instance.StopContinuous(SoundManager.Sound.Voices);
         StopAllCoroutines();
+        textComponent = dialogueBox.GetComponentInChildren<TextMeshProUGUI>();
         textComponent.text = string.Empty;        
         index = 0;
     }
 
     IEnumerator TypeLine()
     {
-        foreach(char c in textDialogue.lines[index].ToCharArray())
+        switch (textDialogue.lines[index].speaker)
+        {
+            case DialogueSpeaker.VoicesInMyHead:
+                textComponent.color = Color.black;            
+                textComponent.fontStyle = FontStyles.Italic;
+                break;
+
+            case DialogueSpeaker.Therapist:
+                textComponent.color = Color.grey;
+                textComponent.fontStyle = FontStyles.Normal;                
+                break;
+            
+            case DialogueSpeaker.Self:
+                textComponent.color = Color.black;
+                textComponent.fontStyle = FontStyles.Normal;
+            break;
+        }
+        foreach(char c in textDialogue.lines[index].text.ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(textDialogue.textSpeed);
+            yield return new WaitForSeconds(textDialogue.lines[index].textSpeed);
         }
     }
 
@@ -71,6 +91,7 @@ public class DialogueManager : BaseMonoBehaviour
         else
         {
             dialogueBox.SetActive(false);
+            StopAndClearDialogue();
             EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, false);
         }
             

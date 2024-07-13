@@ -3,50 +3,84 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundManager : BaseSingletonMonoBehaviour<SoundManager>
 {
     [SerializeField] SoundAudioClip[] myAudioClips;
 
     [SerializeField] private List<AudioSource> audioSources;
+
+    private HashSet<AudioSource> continuousAudioSources = new();
     
     public enum Sound
     {
         MainMenu,
         Combat,
-        Interact
+        Interact,
+        Door,
+        Voices,
+        HeartBeat
     }
 
     public void PLaySound(Sound sound)
     {
-        var audioClip = myAudioClips.First(soundClips => soundClips.sound == sound).audioClip;
+        var audioClip = GetAudioSound(sound);
+        var audioSource = GetAudioSource();
+
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }
+
+    public AudioSource PlayContinuous(Sound sound, bool startAtRandomTime = false)
+    {
+        var audioClip = GetAudioSound(sound);
+        var audioSource = GetAudioSource();
+
+        audioSource.clip = audioClip;
+        audioSource.loop = true;
+        audioSource.time = Random.Range(0f, audioSource.clip.length);
+        audioSource.Play();
+        continuousAudioSources.Add(audioSource);
+
+        return audioSource;
+    }
+
+    public void SetAudioSourceSpeed(AudioSource audioSource, float speed)
+    {
+        audioSource.pitch = speed;
+    }
+
+    public void StopContinuous(Sound sound)
+    {
+        var audioClip = GetAudioSound(sound);
+        var continuousAudioSource = audioSources.FirstOrDefault(x => x.clip == audioClip);
+
+        if (continuousAudioSource == null) return;
         
-        for (var i = 0; i < audioSources.Count; i++)
-        {
-            var audioSource = audioSources[i];
-            if (audioSource.isPlaying) continue;
+        continuousAudioSources.Remove(continuousAudioSource);
 
-            audioSource.clip = audioClip;
-            audioSource.Play();
-            return;
-        }
+        continuousAudioSource.loop = false;
+        continuousAudioSource.Stop();
+    }
 
-        audioSources[0].clip = audioClip;
-        audioSources[0].Play();
+    private AudioClip GetAudioSound(Sound sound)
+    {
+        return myAudioClips.First(soundClips => soundClips.sound == sound).audioClip;
     }
     
 
-    private AudioClip GetAudioClip(Sound sound)
+    private AudioSource GetAudioSource()
     {
-        foreach (SoundAudioClip soundAudioClip in myAudioClips)
+        for (var i = 0; i < audioSources.Count; i++)
         {
-            if (soundAudioClip.sound == sound)
-            {
-                return soundAudioClip.audioClip;
-            }
+            var audioSource = audioSources[i];
+            if (audioSource.isPlaying || continuousAudioSources.Contains(audioSource)) continue;
+
+            return audioSource;
         }
-        Debug.Log("Sound" + sound + " not found!");
-        return null;
+
+        return audioSources[0];
     }
 }
 
