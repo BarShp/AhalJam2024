@@ -12,7 +12,8 @@ public class CombatDialogue : MonoBehaviour
     [SerializeField] private string[] startingMessages;
     [FormerlySerializedAs("messages")] [SerializeField] private string[] battleTips;
     [SerializeField] private float messagesInterval;
-    [SerializeField] private string finalText;
+    [SerializeField] private string winText;
+    [SerializeField] private string loseText;
 
     [SerializeField] private TMP_Text text;
 
@@ -44,11 +45,11 @@ public class CombatDialogue : MonoBehaviour
         StartCoroutine(StartDialoguesCoroutine());
     }
 
-    public void EndDialogues()
+    public void EndDialogues(bool win)
     {
         isDialoguesRunning = false;
         StopAllCoroutines();
-        text.text = finalText;
+        text.text = win ? winText : loseText;
     }
 
     private IEnumerator StartDialoguesCoroutine()

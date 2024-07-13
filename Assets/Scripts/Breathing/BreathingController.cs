@@ -37,6 +37,8 @@ public class BreathingController : BaseMonoBehaviour
     private float currentBreathingPointNormalized;
 
     [ReadOnly] [SerializeField] private float currentAnxiety = 0;
+    [SerializeField] private float heartBeatSoundRangeMin = 0.85f;
+    [SerializeField] private float heartBeatSoundRangeMax = 1.65f;
 
     [SerializeField] private float loadNextSceneTimer;
     [SerializeField] private int nextSceneId;
@@ -143,7 +145,7 @@ public class BreathingController : BaseMonoBehaviour
 
         if (Mathf.Approximately(currentAnxiety, 1))
         {
-            combatDialogue.EndDialogues();
+            combatDialogue.EndDialogues(false);
             SoundManager.Instance.StopContinuous(SoundManager.Sound.HeartBeat);
             EventsManager.Instance.InvokeEvent(EventType.OnPlayerLoss);
             breathingPatternSpeed = 0;
@@ -155,8 +157,23 @@ public class BreathingController : BaseMonoBehaviour
         // Don't ask, I'm tired
         
         anxietyBar.fillAmount = currentAnxiety;
-        heartAnimationController.SetAnimationSpeed(currentAnxiety + 0.5f);
-        SoundManager.Instance.SetAudioSourceSpeed(beatingHeartAudioSource, currentAnxiety + 0.5f);
+
+        var heartBeatAnimationSpeed = MapRange(currentAnxiety, 0, 1, 0.5f, 1.5f); 
+        heartAnimationController.SetAnimationSpeed(heartBeatAnimationSpeed);
+
+        var heartBeatSoundSpeed = MapRange(currentAnxiety, 0, 1, heartBeatSoundRangeMin, heartBeatSoundRangeMax);
+        SoundManager.Instance.SetAudioSourceSpeed(beatingHeartAudioSource, heartBeatSoundSpeed);
+    }
+    
+    public float MapRange(float value, float fromMin, float fromMax, float toMin, float toMax)
+    {
+        // Calculate the percentage of the value within the original range
+        var fromRange = fromMax - fromMin;
+        var toRange = toMax - toMin;
+        var scaledValue = (value - fromMin) / fromRange;
+
+        // Scale and translate the value to the new range
+        return toMin + (scaledValue * toRange);
     }
 
     private void GameWon()
@@ -166,7 +183,7 @@ public class BreathingController : BaseMonoBehaviour
 
     private IEnumerator LoadNextSceneCoroutine()
     {
-        combatDialogue.EndDialogues();
+        combatDialogue.EndDialogues(true);
         
         yield return new WaitForSeconds(loadNextSceneTimer);
 

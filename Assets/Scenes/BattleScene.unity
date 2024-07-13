@@ -2100,8 +2100,10 @@ MonoBehaviour:
   combatDialogue: {fileID: 1739689346}
   startGameTooltip: {fileID: 1169682672}
   currentAnxiety: 0
+  heartBeatSoundRangeMin: 0.85
+  heartBeatSoundRangeMax: 1.65
   loadNextSceneTimer: 4
-  nextSceneId: 2
+  nextSceneId: 0
 --- !u!4 &327904996
 Transform:
   m_ObjectHideFlags: 0
@@ -12097,7 +12099,8 @@ MonoBehaviour:
   - Focus on the now.
   - You're in a safe place.
   messagesInterval: 5
-  finalText: You seem much better.
+  winText: You seem much better.
+  loseText: Let's try calming down.
   text: {fileID: 26449015}
 --- !u!1 &1753079339
 GameObject:
