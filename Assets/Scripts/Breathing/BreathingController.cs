@@ -28,6 +28,7 @@ public class BreathingController : BaseMonoBehaviour
     [SerializeField] private Image anxietyBar;
     
     [SerializeField] private CombatDialogue combatDialogue;
+    [SerializeField] private GameObject startGameTooltip;
     
     private float anxietyGainSpeed;
     
@@ -56,12 +57,17 @@ public class BreathingController : BaseMonoBehaviour
         anxietyGainSpeed = 1 / timeToMaxAnxietyInSeconds;
     }
 
+    private void Start()
+    {
+        beatingHeartAudioSource = SoundManager.Instance.PlayContinuous(SoundManager.Sound.HeartBeat);
+    }
+
     [ContextMenu("Start Game")]
     public void StartGame()
     {
         isGameStarted = true;
+        startGameTooltip.SetActive(false);
         combatDialogue.StartDialogues();
-        beatingHeartAudioSource = SoundManager.Instance.PlayContinuous(SoundManager.Sound.HeartBeat);
     }
 
     private void OnDestroy()
