@@ -35,17 +35,18 @@ public class DialogueManager : BaseMonoBehaviour
     }
 
     public void StartDialogue(DialogueSO newDialogueText)
-    {                
+    {
         StopAndClearDialogue();
+        SoundManager.Instance.PlayContinuous(SoundManager.Sound.Voices);
         EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, true);
         dialogueBox.SetActive(true);
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
-        
     }
 
     public void StopAndClearDialogue()
     {
+        SoundManager.Instance.StopContinuous(SoundManager.Sound.Voices);
         StopAllCoroutines();
         textComponent.text = string.Empty;        
         index = 0;
@@ -71,6 +72,7 @@ public class DialogueManager : BaseMonoBehaviour
         else
         {
             dialogueBox.SetActive(false);
+            StopAndClearDialogue();
             EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, false);
         }
             

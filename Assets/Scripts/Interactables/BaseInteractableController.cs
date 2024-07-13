@@ -11,6 +11,8 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
     [SerializeField] private bool isInteractable = true;
     [SerializeField] private TMP_Text notInteractableTextObject;
     [SerializeField] private string notInteractableText = "I can't do that yet.";
+    [SerializeField] private bool hasExtraSound;
+    [SerializeField] private SoundManager.Sound extraSound;
     
     protected abstract void Interaction();
 
@@ -46,6 +48,10 @@ public abstract class BaseInteractableController : BaseMonoBehaviour, IInteracta
         }
         
         Interaction();
+        if (hasExtraSound)
+        { 
+            SoundManager.Instance.PLaySound(extraSound);
+        }
     }
 
     public IEnumerator DisableNotInteractableText()
