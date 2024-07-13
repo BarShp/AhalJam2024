@@ -188,7 +188,7 @@ MonoBehaviour:
     SerializationNodes: []
   myAudioClips:
   - sound: 2
-    audioClip: {fileID: 8300000, guid: 6dfc980f120fe7943868d1044154a21e, type: 3}
+    audioClip: {fileID: 8300000, guid: fd64076214f24d24db1dd37706e44279, type: 3}
   - sound: 3
     audioClip: {fileID: 8300000, guid: dbcc880dc189f254dabcdfa75ee032bc, type: 3}
   - sound: 4
