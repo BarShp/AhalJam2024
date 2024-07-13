@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcbdccf6c35fa2a4bbd64ea91fe69267, type: 3}
-  m_Name: Scene_0_Dialogue_1
+  m_Name: Scene_0_Dialogue_2
   m_EditorClassIdentifier: 
   lines:
-  - 'Ocdeeznuts: Home at last.'
-  - 'Ocdeeznuts: The last session was...... rough..'
-  - ..
-  - Oh, I left the curtains open.
-  - Might as well close them.
+  - <i>Anyone can see my house without the curtains...</i>
+  - <i>Did someone break in while I was not here?</i>
   textSpeed: 0.125
