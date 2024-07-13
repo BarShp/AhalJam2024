@@ -7,8 +7,19 @@ public class PlayerMovment : MonoBehaviour
     private float horizontal;
     public float speed = 6f;
     private bool isFacingRight = true;
+    private bool canMove = true;
 
     [SerializeField] private Rigidbody2D rb;
+
+    void OnEnable() 
+    {
+        EventsManager.Instance.AddListener(EventType.OnDialogueChange, toggleDialogueActive);
+    }
+
+    void OnDisable()
+    {
+        EventsManager.Instance.RemoveListener(EventType.OnDialogueChange, toggleDialogueActive);
+    }
 
     void Update()
     {
@@ -18,7 +29,14 @@ public class PlayerMovment : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!canMove)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     private void Flip()
@@ -31,5 +49,11 @@ public class PlayerMovment : MonoBehaviour
             transform.localScale = localScale;
           
         }
+    }
+
+    private void toggleDialogueActive(object isDialogueActive)
+    {
+        canMove = !(bool)isDialogueActive;
+        print(canMove);
     }
 }

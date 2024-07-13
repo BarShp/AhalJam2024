@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Ben Test
   m_EditorClassIdentifier: 
   lines:
-  - Ori can you please stop
-  - What? how can I repent
-  - Create a god a please
-  - what? I am a god ben
+  - You feel that slight pressure behind your neck.
+  - '"Are you sure about that?"'
+  - (Oh god, not now)
+  - Breathe, just breathe...
+  - Fuck
+  - I gotta breathe ~Run to the window boi, yes, that circle placeholder on your
+    right~
   textSpeed: 0.125

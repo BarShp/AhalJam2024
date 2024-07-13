@@ -161,6 +161,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   textComponent: {fileID: 1710729611}
+  dialogueActive: 0
 --- !u!4 &481240918
 Transform:
   m_ObjectHideFlags: 0
@@ -184,9 +185,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 334651563787525242, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1411.5254
+      objectReference: {fileID: 0}
+    - target: {fileID: 334651563787525242, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 334651563787525242, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -54
+      objectReference: {fileID: 0}
+    - target: {fileID: 334651563787525242, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 353732593430662161, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 821195190831207414, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_fontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 821195190831207414, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156230486286149701, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799164178298562112, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -268.8134
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799164178298562112, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -735.1693
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799164178298562112, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799164178298562112, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -312
       objectReference: {fileID: 0}
     - target: {fileID: 8800204009930634497, guid: 1a4a1d65fe25988489222ac3287bd04c, type: 3}
       propertyPath: textDialogue

@@ -70,5 +70,6 @@ public enum EventType
 {
     OnStoryTriggerHit,
     OnPlayerLoss,
-    OnInteractableChangeLockStateRequest
+    OnInteractableChangeLockStateRequest,
+    OnDialogueChange,
 }

@@ -9,7 +9,6 @@ public class StoryManager : BaseSingletonMonoBehaviour<StoryManager>
     private AnxietyManager anxietyManager;
     private DialogueManager _dialogueManagerManager;
     private int currentStoryStep = 0;
-    private int currentStoryStepIndex = 0;
     public int CurrentStoryStep => currentStoryStep;
     
     void Start()

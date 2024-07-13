@@ -7,17 +7,20 @@ using Core;
 public class DialogueManager : BaseMonoBehaviour
 {
     DialogueSO textDialogue;
+    private GameObject dialogueBox;
     public TextMeshProUGUI textComponent;
     private int index;
 
     void Start()
     {
+        dialogueBox = GameObject.Find("DialogueBox");
+        dialogueBox.SetActive(false);
         textComponent.text = string.Empty;
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && textDialogue != null)
+        if(Input.GetKeyDown(KeyCode.G) && textDialogue != null)
         {
             if (textComponent.text == textDialogue.lines[index])
             {
@@ -34,8 +37,11 @@ public class DialogueManager : BaseMonoBehaviour
     public void StartDialogue(DialogueSO newDialogueText)
     {                
         StopAndClearDialogue();
+        dialogueBox.SetActive(true);
+        EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, true);
         textDialogue = newDialogueText;
         StartCoroutine(TypeLine());
+        
     }
 
     public void StopAndClearDialogue()
@@ -64,7 +70,8 @@ public class DialogueManager : BaseMonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            dialogueBox.SetActive(false);
+            EventsManager.Instance.InvokeEvent(EventType.OnDialogueChange, false);
         }
             
     }
