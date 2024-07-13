@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Starting Dialogue
   m_EditorClassIdentifier: 
   lines:
-  - 'Sean : I am not sure if the text going to work .'
-  - 'Voices in my head : why you even try to make it work go take some ice cream
-    .'
-  - 'Sean : you sure I cream now at 8:30 is fine ?'
-  - 'Voices in my head : yea go take some.'
+  - 'Therapist: That''s it for now.'
+  - Thank you.
   textSpeed: 0.125

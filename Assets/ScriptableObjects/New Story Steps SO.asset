@@ -22,6 +22,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   storyStepsData:
+  - collisionId: kekFirst
+    storyStepActions:
+    - actionType: 0
+      AnxietyLevel: 0
+      DialogueText: {fileID: 11400000, guid: aadac5142b2be844dbd0e269f63e59ac, type: 2}
+      InteractableLockState:
+        InteractableID: 
+        IsInteractable: 0
+      BattleData:
+        battleSceneId: 0
   - collisionId: kekW
     storyStepActions:
     - actionType: 1
